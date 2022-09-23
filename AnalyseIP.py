@@ -4,18 +4,17 @@ import ipaddress
 import socket
 
 regex_ip = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
-infos_classes = [["256","2exp24"],
-                ["2exp16","2exp16 -2"],
-                ["2exp24","2exp8 -2"]]
+infos_classes = [
+                    ["256","2exp24"],
+                    ["2exp16","2exp16 -2"],
+                    ["2exp24","2exp8 -2"]
+                ]
 
 # Fonction permettant la validation d'une IP sur base d'une IP
 def validationIP(ip):
-    try: 
-        socket.inet_aton(ip)
-        print("vrai")
+    if(re.search(regex_ip, ip)):
         return True
-    except socket.error:
-        print("faux")
+    else:
         return False
     
 def determinationClasse(ip):
@@ -53,25 +52,43 @@ def determinationSiMemeReseau(ip,mask,reseau):
     return True
 
 def fct1():
+    valid = False
     classe = ""
-    ipUtilisateur = input("Veuillez entrer une adresse Ip :")
-    if(validationIP(ipUtilisateur)):
-        if(determinationClasse(ipUtilisateur) == 0):
-            classe = "Adresse réservée"
-        elif(determinationClasse(ipUtilisateur) == 1):
-            classe = "Adresse de classe A"
-        elif(determinationClasse(ipUtilisateur) == 2):
-            classe = "Adresse de classe A (Réservée)"
-        elif(determinationClasse(ipUtilisateur) == 3):
-            classe = "Adresse de classe B"
-        elif(determinationClasse(ipUtilisateur) == 4):
-            classe = "Adresse de classe C"
-        elif(determinationClasse(ipUtilisateur) == 5):
-            classe = "Adresse de classe D (Multicast)"
+    nbReseaux = ""
+    nbHotes = ""
+    while(valid == False):
+        ipUtilisateur = input("Veuillez entrer une adresse Ip :")
+        valid = True
+        if(validationIP(ipUtilisateur)):
+            if(determinationClasse(ipUtilisateur) == 0):
+                classe = "Adresse réservée"
+                nbReseaux = "Cette adresse n'est pas utilisée pour l'adressage des hôtes"
+            elif(determinationClasse(ipUtilisateur) == 1):
+                classe = "Adresse de classe A"
+                nbReseaux = infos_classes[0][0]
+            elif(determinationClasse(ipUtilisateur) == 2):
+                classe = "Adresse de classe A (Réservée)"
+                nbReseaux = infos_classes[0][0]
+            elif(determinationClasse(ipUtilisateur) == 3):
+                classe = "Adresse de classe B"
+                nbReseaux = infos_classes[1][0]
+            elif(determinationClasse(ipUtilisateur) == 4):
+                classe = "Adresse de classe C"
+                nbReseaux = infos_classes[2][0]
+            elif(determinationClasse(ipUtilisateur) == 5):
+                classe = "Adresse de classe D (Multicast)"
+                nbReseaux = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
+            else:
+                classe = "Adresse de classe E (Expériences protocoles)"
+                nbReseaux = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
         else:
-            classe = "Adresse de classe E (Expériences protocoles)"
-    else:
-        print("Adresse Ip entrée invalide")
+            print("Adresse Ip entrée invalide")
+            valid = False
+    
+    print("Classe de l'adresse Ip : " + classe)
+    print("Nombre de réseaux de la classe : " + nbReseaux)
+
+fct1()
         
     
 
