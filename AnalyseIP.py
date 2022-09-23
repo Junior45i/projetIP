@@ -47,6 +47,11 @@ def infoClasse(classe):
     else: 
         return False
     
+def calculReseau_broadcast(ip, mask):
+    host = ipaddress.IPv4Address(ip)
+    net = ipaddress.IPv4Network(mask + '/' + mask, False)
+    print('Subnet:', ipaddress.IPv4Address(int(host) & int(net.netmask)))
+    print('Broadcast:', net.broadcast_address)
 
 # if(determinationClasse(ip) == True):
 #     print("valide")
