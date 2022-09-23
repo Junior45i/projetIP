@@ -1,10 +1,8 @@
-from pickle import FALSE, TRUE
 from tabnanny import check
 import re
 import ipaddress
 import socket
-ip = input("Veuillez entrer l'Ip :")
-ip = input("Mask")
+
 regex_ip = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
 infos_classes = [["256","2exp24"],
                 ["2exp16","2exp16 -2"],
@@ -15,35 +13,28 @@ def validationIP(ip):
     try: 
         socket.inet_aton(ip)
         print("vrai")
-        return TRUE
+        return True
     except socket.error:
         print("faux")
-        return FALSE
+        return False
     
 def determinationClasse(ip):
     # Rajouter pour 0
     ipSplit = ip.split('.')
-    if (int(ipSplit[0]) > 0 and int(ipSplit[0]) <127) :
-        print("Classe A")
-        return 1
-    elif (int(ipSplit[0]) == 127):
-        print("Classe A (Réservé)")
-        return 2
-    elif (int(ipSplit[0]) > 127 and int(ipSplit[0]) <192):
-        print("Classe B")
-        return 3
-    elif (int(ipSplit[0]) > 191 and int(ipSplit[0]) <224):
-        print("Classe C")
-        return 4
-    elif (int(ipSplit[0]) > 223 and int(ipSplit[0]) <240):
-        print("Classe D")
-        return 5
-    elif (int(ipSplit[0]) > 239 and int(ipSplit[0]) <256):
-        print("Classe E (expériences protocoles)")
-        return 6
-    else: 
-        print("La classe n'existe pas")
+    if(int(ipSplit[0]) == 0):
         return 0
+    elif(int(ipSplit[0]) > 0 and int(ipSplit[0]) < 127) :
+        return 1
+    elif(int(ipSplit[0]) == 127):
+        return 2
+    elif(int(ipSplit[0]) > 127 and int(ipSplit[0]) < 192):
+        return 3
+    elif(int(ipSplit[0]) > 191 and int(ipSplit[0]) < 224):
+        return 4
+    elif(int(ipSplit[0]) > 223 and int(ipSplit[0]) < 240):
+        return 5
+    else :
+        return 6
     
 def infoClasse(classe):
     # Vérifie si une recherche des infos de la classe est nécessaire
@@ -59,10 +50,28 @@ def calculReseau_broadcast(ip, mask):
     print('Broadcast:', net.broadcast_address)
     
 def determinationSiMemeReseau(ip,mask,reseau):
-    return TRUE
+    return True
 
-# if(determinationClasse(ip) == True):
-#     print("valide")
-# else:
-#     print("Ip invalide")
+def fct1():
+    classe = ""
+    ipUtilisateur = input("Veuillez entrer une adresse Ip :")
+    if(validationIP(ipUtilisateur)):
+        if(determinationClasse(ipUtilisateur) == 0):
+            classe = "Adresse réservée"
+        elif(determinationClasse(ipUtilisateur) == 1):
+            classe = "Adresse de classe A"
+        elif(determinationClasse(ipUtilisateur) == 2):
+            classe = "Adresse de classe A (Réservée)"
+        elif(determinationClasse(ipUtilisateur) == 3):
+            classe = "Adresse de classe B"
+        elif(determinationClasse(ipUtilisateur) == 4):
+            classe = "Adresse de classe C"
+        elif(determinationClasse(ipUtilisateur) == 5):
+            classe = "Adresse de classe D (Multicast)"
+        else:
+            classe = "Adresse de classe E (Expériences protocoles)"
+    else:
+        print("Adresse Ip entrée invalide")
+        
+    
 
