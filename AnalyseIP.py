@@ -8,14 +8,37 @@ def validationIP(ip):
     # Split sur base du point 
     # Vérifie que l'on à bien 4 blocs
     if(re.search(regex_ip, ip)):
-        ipSplit = ip.split('.')
-        if (int(ipSplit[0]) == 127 or int(ipSplit[0]) == 0):
-            print("IP 127 et 0 INVALIDE")
-            return False 
         print ("IP BONNE")
         return True
     
-if(validationIP(ip) == True):
+def determinationClasse(ip):
+    ipSplit = ip.split('.')
+    if (int(ipSplit[0]) > 0 and int(ipSplit[0]) <127) :
+        print("Classe A")
+        return 1
+    elif (int(ipSplit[0]) == 127):
+        print("Classe A (Réservé)")
+        return 2
+    elif (int(ipSplit[0]) > 127 and int(ipSplit[0]) <192):
+        print("Classe B")
+        return 3
+    elif (int(ipSplit[0]) > 191 and int(ipSplit[0]) <224):
+        print("Classe C")
+        return 4
+    elif (int(ipSplit[0]) > 223 and int(ipSplit[0]) <240):
+        print("Classe D")
+        return 5
+    elif (int(ipSplit[0]) > 239 and int(ipSplit[0]) <256):
+        print("Classe E (expériences protocoles)")
+        return 6
+    else: 
+        print("La classe n'existe pas")
+        return 0
+    
+def infoClasse(classe):
+     
+
+if(determinationClasse(ip) == True):
     print("valide")
 else:
     print("Ip invalide")
