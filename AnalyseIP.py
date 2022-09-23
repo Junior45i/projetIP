@@ -1,6 +1,8 @@
 from tabnanny import check
 import re
+import ipaddress
 ip = input("Veuillez entrer l'Ip :")
+ip = input("Mask")
 regex_ip = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
 
 # Fonction permettant la validation d'une IP sur base d'une IP
@@ -44,9 +46,16 @@ def infoClasse(classe):
                     # Pas fini 
                     ["256","2exp24 -2"],
                     ["256","2exp24 -2"]]
+     
+def calculReseau_broadcast(ip, mask):
+    host = ipaddress.IPv4Address(ip)
+    net = ipaddress.IPv4Network(ip + '/' + mask, False)
+    print('Broadcast:', net.broadcast_address)
+    print('Subnet:', ipaddress.IPv4Address(int(host) & int(net.netmask)))
+    
 
-if(determinationClasse(ip) == True):
-    print("valide")
-else:
-    print("Ip invalide")
+# if(determinationClasse(ip) == True):
+#     print("valide")
+# else:
+#     print("Ip invalide")
 
