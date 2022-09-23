@@ -1,6 +1,8 @@
+from pickle import FALSE, TRUE
 from tabnanny import check
 import re
 import ipaddress
+import socket
 ip = input("Veuillez entrer l'Ip :")
 ip = input("Mask")
 regex_ip = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
@@ -10,13 +12,16 @@ infos_classes = [["256","2exp24"],
 
 # Fonction permettant la validation d'une IP sur base d'une IP
 def validationIP(ip):
-    # Split sur base du point 
-    # Vérifie que l'on à bien 4 blocs
-    if(re.search(regex_ip, ip)):
-        print ("IP BONNE")
-        return True
+    try: 
+        socket.inet_aton(ip)
+        print("vrai")
+        return TRUE
+    except socket.error:
+        print("faux")
+        return FALSE
     
 def determinationClasse(ip):
+    # Rajouter pour 0
     ipSplit = ip.split('.')
     if (int(ipSplit[0]) > 0 and int(ipSplit[0]) <127) :
         print("Classe A")
@@ -50,8 +55,11 @@ def infoClasse(classe):
 def calculReseau_broadcast(ip, mask):
     host = ipaddress.IPv4Address(ip)
     net = ipaddress.IPv4Network(mask + '/' + mask, False)
-    print('Subnet:', ipaddress.IPv4Address(int(host) & int(net.netmask)))
+    print('Réseau ou Sous-Réseau:', ipaddress.IPv4Address(int(host) & int(net.netmask)))
     print('Broadcast:', net.broadcast_address)
+    
+def determinationSiMemeReseau(ip,mask,reseau):
+    return TRUE
 
 # if(determinationClasse(ip) == True):
 #     print("valide")
