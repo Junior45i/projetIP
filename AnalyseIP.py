@@ -36,7 +36,14 @@ def determinationClasse(ip):
         return 0
     
 def infoClasse(classe):
-     
+     #Information des classes
+     #Réseau, hôte
+     Information = [["256","2exp24"],
+                    ["2exp16","2exp16 -2"],
+                    ["2exp24","2exp8 -2"],
+                    # Pas fini 
+                    ["256","2exp24 -2"],
+                    ["256","2exp24 -2"]]
 
 if(determinationClasse(ip) == True):
     print("valide")
