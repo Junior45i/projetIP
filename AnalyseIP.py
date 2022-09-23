@@ -2,6 +2,9 @@ from tabnanny import check
 import re
 ip = input("Veuillez entrer l'Ip :")
 regex_ip = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
+infos_classes = [["256","2exp24"],
+                ["2exp16","2exp16 -2"],
+                ["2exp24","2exp8 -2"]]
 
 # Fonction permettant la validation d'une IP sur base d'une IP
 def validationIP(ip):
@@ -36,14 +39,12 @@ def determinationClasse(ip):
         return 0
     
 def infoClasse(classe):
-     #Information des classes
-     #Réseau, hôte
-     Information = [["256","2exp24"],
-                    ["2exp16","2exp16 -2"],
-                    ["2exp24","2exp8 -2"],
-                    # Pas fini 
-                    ["256","2exp24 -2"],
-                    ["256","2exp24 -2"]]
+    # Vérifie si une recherche des infos de la classe est nécessaire
+    if(classe < 5):
+        return True
+    else: 
+        return False
+    
 
 if(determinationClasse(ip) == True):
     print("valide")
