@@ -6,8 +6,8 @@ import socket
 regex_ip = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
 infos_classes = [
                     ["256","2exp24"],
-                    ["2exp16","2exp16 -2"],
-                    ["2exp24","2exp8 -2"]
+                    ["2exp16","2exp16-2"],
+                    ["2exp24","2exp8-2"]
                 ]
 
 # Fonction permettant la validation d'une IP sur base d'une IP
@@ -63,30 +63,38 @@ def fct1():
             if(determinationClasse(ipUtilisateur) == 0):
                 classe = "Adresse réservée"
                 nbReseaux = "Cette adresse n'est pas utilisée pour l'adressage des hôtes"
+                nbHotes = "Cette adresse n'est pas utilisée pour l'adressage des hôtes"
             elif(determinationClasse(ipUtilisateur) == 1):
                 classe = "Adresse de classe A"
                 nbReseaux = infos_classes[0][0]
+                nbHotes = infos_classes[0][1]
             elif(determinationClasse(ipUtilisateur) == 2):
                 classe = "Adresse de classe A (Réservée)"
                 nbReseaux = infos_classes[0][0]
+                nbHotes = infos_classes[0][1]
             elif(determinationClasse(ipUtilisateur) == 3):
                 classe = "Adresse de classe B"
                 nbReseaux = infos_classes[1][0]
+                nbHotes = infos_classes[1][1]
             elif(determinationClasse(ipUtilisateur) == 4):
                 classe = "Adresse de classe C"
                 nbReseaux = infos_classes[2][0]
+                nbHotes = infos_classes[2][1]
             elif(determinationClasse(ipUtilisateur) == 5):
                 classe = "Adresse de classe D (Multicast)"
                 nbReseaux = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
+                nbHotes = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
             else:
                 classe = "Adresse de classe E (Expériences protocoles)"
                 nbReseaux = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
+                nbHotes = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
         else:
             print("Adresse Ip entrée invalide")
             valid = False
     
     print("Classe de l'adresse Ip : " + classe)
     print("Nombre de réseaux de la classe : " + nbReseaux)
+    print("Nombre d'hôtes que peut fournir le réseau : " + nbHotes)
 
 fct1()
         
