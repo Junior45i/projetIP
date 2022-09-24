@@ -51,7 +51,7 @@ def calculReseau_broadcast(ip, mask):
 def determinationSiMemeReseau(ip,mask,reseau):
     return True
 
-def fct1():
+def fonctionnalite1():
     valid = False
     classe = ""
     nbReseaux = ""
@@ -96,7 +96,7 @@ def fct1():
     print("Nombre de réseaux de la classe : " + nbReseaux)
     print("Nombre d'hôtes que peut fournir le réseau : " + nbHotes)
 
-fct1()
+fonctionnalite1()
         
     
 
