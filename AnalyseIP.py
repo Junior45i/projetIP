@@ -16,6 +16,9 @@ infos_classes = [
 # Valeurs possibles des octets de masques
 val_masque = ("128","192","224","240","248","252","254","255")
 
+# Valeurs possibles des masques des classes
+val_masques_classes = ("255.0.0.0","255.0.0.0","255.255.0.0","255.255.255.0")
+
 # Fonction permettant la validation d'une IP
 def validationIP(ip):
     if(re.search(regex_ip, ip)):
@@ -63,13 +66,21 @@ def determinationClasse(ip):
     else :
         return 6
        
-# Fonction récuperant l'adresse réseau et broadcast d'une Ip et d'un masque    
-def calculReseau_broadcast(ip, mask):
+# Fonction récuperant l'adresse réseau d'une Ip et d'un masque    
+def calculAdresseReseau(ip, mask):
     host = ipaddress.IPv4Address(ip)
     net = ipaddress.IPv4Network(mask + '/' + mask, False)
-    print('Réseau ou Sous-Réseau:', ipaddress.IPv4Address(int(host) & int(net.netmask)))
+    adresseReseau = ipaddress.IPv4Address(int(host) & int(net.netmask))
+    return adresseReseau
     print('Broadcast:', net.broadcast_address)
-    
+
+# Fonction récuperant l'adresse broadcast d'une Ip et d'un masque 
+def calculAdresseBroadcast(ip, mask):
+    host = ipaddress.IPv4Address(ip)
+    net = ipaddress.IPv4Network(mask + '/' + mask, False)
+    adresseBroadcast = net.broadcast_address
+    return adresseBroadcast
+
 #def determinationSiMemeReseau(ip,mask,reseau):
 #    return True
 
@@ -136,6 +147,13 @@ def fonctionnalite2():
         if(validationMasque(masqueUtilisateur) == False):
             print("Masque entré invalide")
             validMasque = False
+
+    classeIpUtilisateur = determinationClasse(ipUtilisateur)
+    if(classeIpUtilisateur > 0 and classeIpUtilisateur < 5):
+        masqueIpClasse = val_masques_classes[classeIpUtilisateur-1]
+        print("Masque de l'adresse entrée en classfull :" + masqueIpClasse)
+
+    
 
     
 
