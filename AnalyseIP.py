@@ -69,15 +69,14 @@ def determinationClasse(ip):
 # Fonction récuperant l'adresse réseau d'une Ip et d'un masque    
 def calculAdresseReseau(ip, mask):
     host = ipaddress.IPv4Address(ip)
-    net = ipaddress.IPv4Network(mask + '/' + mask, False)
+    net = ipaddress.IPv4Network(ip + '/' + mask, False)
     adresseReseau = ipaddress.IPv4Address(int(host) & int(net.netmask))
     return adresseReseau
-    print('Broadcast:', net.broadcast_address)
 
 # Fonction récuperant l'adresse broadcast d'une Ip et d'un masque 
 def calculAdresseBroadcast(ip, mask):
     host = ipaddress.IPv4Address(ip)
-    net = ipaddress.IPv4Network(mask + '/' + mask, False)
+    net = ipaddress.IPv4Network(ip + '/' + mask, False)
     adresseBroadcast = net.broadcast_address
     return adresseBroadcast
 
@@ -90,6 +89,7 @@ def fonctionnalite1():
     classe = ""
     nbReseaux = ""
     nbHotes = ""
+
     while(valid == False):
         ipUtilisateur = input("Veuillez entrer une adresse Ip :")
         valid = True
@@ -133,6 +133,8 @@ def fonctionnalite1():
 def fonctionnalite2():
     validIp = False
     validMasque = False
+    ipUtilisateur = ""
+    masqueUtilisateur = ""
 
     while(validIp == False):
         ipUtilisateur = input("Veuillez entrer une adresse Ip :")
@@ -153,11 +155,16 @@ def fonctionnalite2():
         masqueIpClasse = val_masques_classes[classeIpUtilisateur-1]
         print("Masque de l'adresse entrée en classfull :" + masqueIpClasse)
 
-    
+    print("Adresse de réseau : " + str(calculAdresseReseau(ipUtilisateur,masqueIpClasse)))
+    print("Adresse de broadcast du réseau : " + str(calculAdresseBroadcast(ipUtilisateur,masqueIpClasse)))
+
+    if(masqueUtilisateur != masqueIpClasse):
+        print("Adresse de sous-réseau : " + str(calculAdresseReseau(ipUtilisateur,masqueUtilisateur)))
+        print("Adresse de broadcast du sous-réseau : " + str(calculAdresseBroadcast(ipUtilisateur,masqueUtilisateur)))
 
     
-
 fonctionnalite2()
+#fonctionnalite2()
 
         
     
