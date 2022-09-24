@@ -13,10 +13,34 @@ infos_classes = [
                     ["2exp24","2exp8-2"]
                 ]
 
+# Valeurs possibles des octets de masques
+val_masque = ("128","192","224","240","248","252","254","255")
+
 # Fonction permettant la validation d'une IP
 def validationIP(ip):
     if(re.search(regex_ip, ip)):
         return True
+    else:
+        return False
+
+# Fonction permettant la validation d'un masque
+def validationMasque(masque):
+    if(masque != "255.255.255.255"):
+        if(re.search(regex_ip, masque)):
+            array_masque = masque.split(".")
+            for i in range(3,0,-1):
+                if(array_masque[i] in val_masque):
+                    if(array_masque[i-1] != "255"):
+                        return False
+                else:
+                    if(array_masque[i] == "0"):
+                        if(array_masque[i-1] != "0" and not(array_masque[i-1] in val_masque)):
+                            return False
+                    else:
+                        return False
+            return True
+        else:
+            return False
     else:
         return False
     
@@ -58,46 +82,65 @@ def fonctionnalite1():
     while(valid == False):
         ipUtilisateur = input("Veuillez entrer une adresse Ip :")
         valid = True
-        if(validationIP(ipUtilisateur)):
-            if(determinationClasse(ipUtilisateur) == 0):
-                classe = "Adresse réservée"
-                nbReseaux = "Cette adresse n'est pas utilisée pour l'adressage des hôtes"
-                nbHotes = "Cette adresse n'est pas utilisée pour l'adressage des hôtes"
-            elif(determinationClasse(ipUtilisateur) == 1):
-                classe = "Adresse de classe A"
-                nbReseaux = infos_classes[0][0]
-                nbHotes = infos_classes[0][1]
-            elif(determinationClasse(ipUtilisateur) == 2):
-                classe = "Adresse de classe A (Réservée)"
-                nbReseaux = infos_classes[0][0]
-                nbHotes = infos_classes[0][1]
-            elif(determinationClasse(ipUtilisateur) == 3):
-                classe = "Adresse de classe B"
-                nbReseaux = infos_classes[1][0]
-                nbHotes = infos_classes[1][1]
-            elif(determinationClasse(ipUtilisateur) == 4):
-                classe = "Adresse de classe C"
-                nbReseaux = infos_classes[2][0]
-                nbHotes = infos_classes[2][1]
-            elif(determinationClasse(ipUtilisateur) == 5):
-                classe = "Adresse de classe D (Multicast)"
-                nbReseaux = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
-                nbHotes = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
-            else:
-                classe = "Adresse de classe E (Expériences protocoles)"
-                nbReseaux = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
-                nbHotes = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
-        else:
+        if(validationIP(ipUtilisateur) == False):
             print("Adresse Ip entrée invalide")
             valid = False
+    
+    if(determinationClasse(ipUtilisateur) == 0):
+        classe = "Adresse réservée"
+        nbReseaux = "Cette adresse n'est pas utilisée pour l'adressage des hôtes"
+        nbHotes = "Cette adresse n'est pas utilisée pour l'adressage des hôtes"
+    elif(determinationClasse(ipUtilisateur) == 1):
+        classe = "Adresse de classe A"
+        nbReseaux = infos_classes[0][0]
+        nbHotes = infos_classes[0][1]
+    elif(determinationClasse(ipUtilisateur) == 2):
+        classe = "Adresse de classe A (Réservée)"
+        nbReseaux = infos_classes[0][0]
+        nbHotes = infos_classes[0][1]
+    elif(determinationClasse(ipUtilisateur) == 3):
+        classe = "Adresse de classe B"
+        nbReseaux = infos_classes[1][0]
+        nbHotes = infos_classes[1][1]
+    elif(determinationClasse(ipUtilisateur) == 4):
+        classe = "Adresse de classe C"
+        nbReseaux = infos_classes[2][0]
+        nbHotes = infos_classes[2][1]
+    elif(determinationClasse(ipUtilisateur) == 5):
+        classe = "Adresse de classe D (Multicast)"
+        nbReseaux = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
+        nbHotes = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
+    else:
+        classe = "Adresse de classe E (Expériences protocoles)"
+        nbReseaux = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
+        nbHotes = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
     
     print("Classe de l'adresse Ip : " + classe)
     print("Nombre de réseaux de la classe : " + nbReseaux)
     print("Nombre d'hôtes que peut fournir le réseau : " + nbHotes)
 
+def fonctionnalite2():
+    validIp = False
+    validMasque = False
 
+    while(validIp == False):
+        ipUtilisateur = input("Veuillez entrer une adresse Ip :")
+        validIp = True
+        if(validationIP(ipUtilisateur) == False):
+            print("Adresse Ip entrée invalide")
+            validIp = False
 
-fonctionnalite1()
+    while(validMasque == False):
+        masqueUtilisateur = input("Veuillez entrer un masque de réseau :")
+        validMasque = True
+        if(validationMasque(masqueUtilisateur) == False):
+            print("Masque entré invalide")
+            validMasque = False
+
+    
+
+fonctionnalite2()
+
         
     
 
