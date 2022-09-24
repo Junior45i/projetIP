@@ -3,20 +3,24 @@ import re
 import ipaddress
 import socket
 
+# Regex de vérification 'Ip
 regex_ip = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
+
+# Informations des classes Ligne = Classes / Colonnes = nbr Rés, nbr Hôt
 infos_classes = [
                     ["256","2exp24"],
                     ["2exp16","2exp16-2"],
                     ["2exp24","2exp8-2"]
                 ]
 
-# Fonction permettant la validation d'une IP sur base d'une IP
+# Fonction permettant la validation d'une IP
 def validationIP(ip):
     if(re.search(regex_ip, ip)):
         return True
     else:
         return False
     
+# Fonction permettant de déterminer la classe d'une Ip
 def determinationClasse(ip):
     # Rajouter pour 0
     ipSplit = ip.split('.')
@@ -34,23 +38,18 @@ def determinationClasse(ip):
         return 5
     else :
         return 6
-    
-def infoClasse(classe):
-    # Vérifie si une recherche des infos de la classe est nécessaire
-    if(classe < 5):
-        return True
-    else: 
-        return False
-    
+       
+# Fonction récuperant l'adresse réseau et broadcast d'une Ip et d'un masque    
 def calculReseau_broadcast(ip, mask):
     host = ipaddress.IPv4Address(ip)
     net = ipaddress.IPv4Network(mask + '/' + mask, False)
     print('Réseau ou Sous-Réseau:', ipaddress.IPv4Address(int(host) & int(net.netmask)))
     print('Broadcast:', net.broadcast_address)
     
-def determinationSiMemeReseau(ip,mask,reseau):
-    return True
+#def determinationSiMemeReseau(ip,mask,reseau):
+#    return True
 
+# Fonction de la première fonctionnalité
 def fonctionnalite1():
     valid = False
     classe = ""
@@ -95,6 +94,8 @@ def fonctionnalite1():
     print("Classe de l'adresse Ip : " + classe)
     print("Nombre de réseaux de la classe : " + nbReseaux)
     print("Nombre d'hôtes que peut fournir le réseau : " + nbHotes)
+
+
 
 fonctionnalite1()
         
