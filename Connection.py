@@ -1,11 +1,82 @@
 from cgi import test
 from tkinter import *
 
+def partie1():
+    
+    def btnAccueil():
+        partie1.destroy()
+        accueil()
+    partie1 = Tk()
+    partie1.geometry("1000x600")
+    partie1.configure(bg = "#ffffff")
+    canvas = Canvas(
+        partie1,
+        bg = "#ffffff",
+        height = 600,
+        width = 1000,
+        bd = 0,
+        highlightthickness = 0,
+        relief = "ridge")
+    canvas.place(x = 0, y = 0)
+
+    background_img = PhotoImage(file = f"./images/partie1/background.png")
+    background = canvas.create_image(
+        500.0, 300.0,
+        image=background_img)
+
+    entry0_img = PhotoImage(file = f"./images/partie1/img_textBox0.png")
+    entry0_bg = canvas.create_image(
+        480.0, 239.0,
+        image = entry0_img)
+
+    entry0 = Entry(
+        bd = 0,
+        bg = "#ffffff",
+        highlightthickness = 0)
+
+    entry0.place(
+        x = 282, y = 218,
+        width = 396,
+        height = 40)
+
+    img0 = PhotoImage(file = f"./images/partie1/img0.png")
+    b0 = Button(
+        image = img0,
+        borderwidth = 0,
+        highlightthickness = 0,
+        command = btn_clicked,
+        relief = "flat")
+
+    b0.place(
+        x = 693, y = 218,
+        width = 191,
+        height = 42)
+
+    img1 = PhotoImage(file = f"./images/partie1/img1.png")
+    b1 = Button(
+        image = img1,
+        borderwidth = 0,
+        highlightthickness = 0,
+        command = btnAccueil,
+        relief = "flat")
+
+    b1.place(
+        x = 93, y = 91,
+        width = 118,
+        height = 109)
+
+    partie1.resizable(False, False)
+    partie1.mainloop()
+
 def accueil():
+    
+    def btnParti1():
+        accueil.destroy()
+        partie1()
+        
     accueil = Tk()
     accueil.geometry("1000x600")
     accueil.configure(bg = "#ffffff")
-    accueil.iconbitmap('./images/logo.ico')
     canvas = Canvas(
         accueil,
         bg = "#ffffff",
@@ -18,7 +89,7 @@ def accueil():
 
     background_img = PhotoImage(file = f"./images/accueil/background.png")
     background = canvas.create_image(
-        440.5, 296.5,
+        500.0, 300.0,
         image=background_img)
 
     img0 = PhotoImage(file = f"./images/accueil/img0.png")
@@ -26,11 +97,11 @@ def accueil():
         image = img0,
         borderwidth = 0,
         highlightthickness = 0,
-        command = btn_clicked,
+        command = btnParti1,
         relief = "flat")
 
     b0.place(
-        x = 524, y = 185,
+        x = 578, y = 100,
         width = 253,
         height = 54)
 
@@ -39,11 +110,11 @@ def accueil():
         image = img1,
         borderwidth = 0,
         highlightthickness = 0,
-        command = btn_clicked,
+        command = btnParti1,
         relief = "flat")
 
     b1.place(
-        x = 524, y = 289,
+        x = 578, y = 183,
         width = 253,
         height = 54)
 
@@ -52,11 +123,37 @@ def accueil():
         image = img2,
         borderwidth = 0,
         highlightthickness = 0,
-        command = btn_clicked,
+        command = btnParti1,
         relief = "flat")
 
     b2.place(
-        x = 524, y = 391,
+        x = 578, y = 349,
+        width = 253,
+        height = 54)
+
+    img3 = PhotoImage(file = f"./images/accueil/img3.png")
+    b3 = Button(
+        image = img3,
+        borderwidth = 0,
+        highlightthickness = 0,
+        command = btnParti1,
+        relief = "flat")
+
+    b3.place(
+        x = 578, y = 432,
+        width = 253,
+        height = 54)
+
+    img4 = PhotoImage(file = f"./images/accueil/img4.png")
+    b4 = Button(
+        image = img4,
+        borderwidth = 0,
+        highlightthickness = 0,
+        command = btnParti1,
+        relief = "flat")
+
+    b4.place(
+        x = 578, y = 266,
         width = 253,
         height = 54)
 
