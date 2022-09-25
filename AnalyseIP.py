@@ -153,7 +153,6 @@ def fonctionnalite2():
     classeIpUtilisateur = determinationClasse(ipUtilisateur)
     if(classeIpUtilisateur > 0 and classeIpUtilisateur < 5):
         masqueIpClasse = val_masques_classes[classeIpUtilisateur-1]
-        print("Masque de l'adresse entrée en classfull :" + masqueIpClasse)
 
     print("Adresse de réseau : " + str(calculAdresseReseau(ipUtilisateur,masqueIpClasse)))
     print("Adresse de broadcast du réseau : " + str(calculAdresseBroadcast(ipUtilisateur,masqueIpClasse)))
@@ -162,9 +161,6 @@ def fonctionnalite2():
         print("Adresse de sous-réseau : " + str(calculAdresseReseau(ipUtilisateur,masqueUtilisateur)))
         print("Adresse de broadcast du sous-réseau : " + str(calculAdresseBroadcast(ipUtilisateur,masqueUtilisateur)))
 
-    
-fonctionnalite2()
-#fonctionnalite2()
 
         
     
