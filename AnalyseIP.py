@@ -3,10 +3,10 @@ import re
 import ipaddress
 import socket
 
-# Regex de vérification 'Ip
+# Regex de vérification d'une Ip
 regex_ip = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
 
-# Informations des classes Ligne = Classes / Colonnes = nbr Rés, nbr Hôt
+# Informations des classes Ligne = Classes /// Colonnes = nbr Rés, nbr Hôt
 infos_classes = [
                     ["256","2exp24"],
                     ["2exp16","2exp16-2"],
@@ -80,9 +80,6 @@ def calculAdresseBroadcast(ip, mask):
     adresseBroadcast = net.broadcast_address
     return adresseBroadcast
 
-#def determinationSiMemeReseau(ip,mask,reseau):
-#    return True
-
 # Fonction de la première fonctionnalité
 def fonctionnalite1():
     valid = False
@@ -130,6 +127,7 @@ def fonctionnalite1():
     print("Nombre de réseaux de la classe : " + nbReseaux)
     print("Nombre d'hôtes que peut fournir le réseau : " + nbHotes)
 
+# Fonction de la deuxième fonctionnalité
 def fonctionnalite2():
     validIp = False
     validMasque = False
