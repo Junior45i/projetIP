@@ -11,7 +11,7 @@ print("3) Déterminer si une Ip fait partie d'un réseau")
 print("4) Déterminer si deux adresses Ip font parties du même réseau")
 print("5) Déterminer les caractéristiques d'un sous-réseau")
 
-# Switch des choix du menus
+# Switch des choix du menus2
 while(choixValid == False):
     choix = input("Veuillez faire un choix de fonctionnalité : ")
     print(choix)
