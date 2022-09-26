@@ -114,6 +114,8 @@ def caracteristiquesClasse(numClasse):
         nbReseaux = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
         nbHotes = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
     
+    # Retour d'un tableau contenant les caractéristiques de la classe
+    # 0:classe     1:nbre réseaux     2:nbre hôtes
     carac = []
     carac.append(classe)
     carac.append(nbReseaux)
@@ -123,6 +125,8 @@ def caracteristiquesClasse(numClasse):
     print("Nbr hôtes : " + carac[2])
     return carac
 
+# Fonction permettant de renvoyer les ip d'adresse et de broadcast du réseau et sous-réseau
+# 0:adresse du réseau     1:adresse broadcast du réseau     2:adresse de sous-réseau     3:adresse broadcast de sous-réseau
 def determinationAdresse(ip, masque):
     classeIpUtilisateur = determinationClasse(ip)
     adresse = ""
