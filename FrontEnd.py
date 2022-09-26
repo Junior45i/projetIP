@@ -6,15 +6,14 @@ import AnalyseIP
 
 def partie1():
     
-    texte = "test"
-    
     def btnAccueil():
         partie1.destroy()
         accueil()
         
     def btnCalcul():
-        classe = AnalyseIP.determinationClasse(entry0.get())
-        print(classe)
+        classe = AnalyseIP.caracteristiquesClasse(AnalyseIP.determinationClasse(entry0.get()))
+        lClasse.config(text=str(classe))
+        
         return classe
         
     partie1 = Tk()
@@ -52,21 +51,21 @@ def partie1():
 
 
 
-    lClasse = Label(partie1, text = texte )
+    lClasse = Label(partie1)
     lClasse.place(
         x = 350, y = 315,
         width = 300,
         height = 30)
     lClasse['background'] = '#D9D9D9'
     
-    lReseau = Label(partie1, text = texte )
+    lReseau = Label(partie1, text = "test" )
     lReseau.place(
         x = 350, y = 390,
         width = 300,
         height = 30)
     lReseau['background'] = '#D9D9D9'
     
-    lHote = Label(partie1, text = texte )
+    lHote = Label(partie1, text = "test" )
     lHote.place(
         x = 350, y = 462,
         width = 300,

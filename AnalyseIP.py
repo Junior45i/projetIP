@@ -114,7 +114,7 @@ def caracteristiquesClasse(numClasse):
         nbReseaux = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
         nbHotes = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
     
-    print("Classe de l'adresse Ip : " + classe)
+    return("Classe de l'adresse Ip : " + classe)
     print("Nombre de réseaux de la classe : " + nbReseaux)
     print("Nombre d'hôtes que peut fournir le réseau : " + nbHotes)
 
