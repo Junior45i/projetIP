@@ -80,6 +80,44 @@ def calculAdresseBroadcast(ip, mask):
     adresseBroadcast = net.broadcast_address
     return adresseBroadcast
 
+# Fonction permettant d'afficher les caractéristiques d'une classe
+def caracteristiquesClasse(numClasse):
+    classe = ""
+    nbReseaux = ""
+    nbHotes = ""
+    if(numClasse == 0):
+        classe = "Adresse réservée"
+        nbReseaux = "Cette adresse n'est pas utilisée pour l'adressage des hôtes"
+        nbHotes = "Cette adresse n'est pas utilisée pour l'adressage des hôtes"
+    elif(numClasse == 1):
+        classe = "Adresse de classe A"
+        nbReseaux = infos_classes[0][0]
+        nbHotes = infos_classes[0][1]
+    elif(numClasse == 2):
+        classe = "Adresse de classe A (Réservée)"
+        nbReseaux = infos_classes[0][0]
+        nbHotes = infos_classes[0][1]
+    elif(numClasse == 3):
+        classe = "Adresse de classe B"
+        nbReseaux = infos_classes[1][0]
+        nbHotes = infos_classes[1][1]
+    elif(numClasse == 4):
+        classe = "Adresse de classe C"
+        nbReseaux = infos_classes[2][0]
+        nbHotes = infos_classes[2][1]
+    elif(numClasse == 5):
+        classe = "Adresse de classe D (Multicast)"
+        nbReseaux = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
+        nbHotes = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
+    else:
+        classe = "Adresse de classe E (Expériences protocoles)"
+        nbReseaux = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
+        nbHotes = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
+    
+    print("Classe de l'adresse Ip : " + classe)
+    print("Nombre de réseaux de la classe : " + nbReseaux)
+    print("Nombre d'hôtes que peut fournir le réseau : " + nbHotes)
+
 # Fonction de la première fonctionnalité
 def fonctionnalite1():
     valid = False
@@ -93,39 +131,8 @@ def fonctionnalite1():
         if(validationIP(ipUtilisateur) == False):
             print("Adresse Ip entrée invalide")
             valid = False
-    
-    if(determinationClasse(ipUtilisateur) == 0):
-        classe = "Adresse réservée"
-        nbReseaux = "Cette adresse n'est pas utilisée pour l'adressage des hôtes"
-        nbHotes = "Cette adresse n'est pas utilisée pour l'adressage des hôtes"
-    elif(determinationClasse(ipUtilisateur) == 1):
-        classe = "Adresse de classe A"
-        nbReseaux = infos_classes[0][0]
-        nbHotes = infos_classes[0][1]
-    elif(determinationClasse(ipUtilisateur) == 2):
-        classe = "Adresse de classe A (Réservée)"
-        nbReseaux = infos_classes[0][0]
-        nbHotes = infos_classes[0][1]
-    elif(determinationClasse(ipUtilisateur) == 3):
-        classe = "Adresse de classe B"
-        nbReseaux = infos_classes[1][0]
-        nbHotes = infos_classes[1][1]
-    elif(determinationClasse(ipUtilisateur) == 4):
-        classe = "Adresse de classe C"
-        nbReseaux = infos_classes[2][0]
-        nbHotes = infos_classes[2][1]
-    elif(determinationClasse(ipUtilisateur) == 5):
-        classe = "Adresse de classe D (Multicast)"
-        nbReseaux = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
-        nbHotes = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
-    else:
-        classe = "Adresse de classe E (Expériences protocoles)"
-        nbReseaux = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
-        nbHotes = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
-    
-    print("Classe de l'adresse Ip : " + classe)
-    print("Nombre de réseaux de la classe : " + nbReseaux)
-    print("Nombre d'hôtes que peut fournir le réseau : " + nbHotes)
+
+    caracteristiquesClasse(determinationClasse(ipUtilisateur))
 
 # Fonction de la deuxième fonctionnalité
 def fonctionnalite2():
