@@ -1,11 +1,22 @@
 from cgi import test
 from tkinter import *
+from tokenize import String
+import AnalyseIP
+
 
 def partie1():
+    
+    texte = "test"
     
     def btnAccueil():
         partie1.destroy()
         accueil()
+        
+    def btnCalcul():
+        classe = AnalyseIP.determinationClasse(entry0.get())
+        print(classe)
+        return classe
+        
     partie1 = Tk()
     partie1.geometry("1000x600")
     partie1.configure(bg = "#ffffff")
@@ -39,7 +50,97 @@ def partie1():
         width = 396,
         height = 40)
 
+
+
+    lClasse = Label(partie1, text = texte )
+    lClasse.place(
+        x = 350, y = 315,
+        width = 300,
+        height = 30)
+    lClasse['background'] = '#D9D9D9'
+    
+    lReseau = Label(partie1, text = texte )
+    lReseau.place(
+        x = 350, y = 390,
+        width = 300,
+        height = 30)
+    lReseau['background'] = '#D9D9D9'
+    
+    lHote = Label(partie1, text = texte )
+    lHote.place(
+        x = 350, y = 462,
+        width = 300,
+        height = 30)
+    lHote['background'] = '#D9D9D9'
+
     img0 = PhotoImage(file = f"./images/partie1/img0.png")
+    btn_calcul = Button(
+        image = img0,
+        borderwidth = 0,
+        highlightthickness = 0,
+        command = btnCalcul,
+        relief = "flat")
+
+    btn_calcul.place(
+        x = 693, y = 218,
+        width = 191,
+        height = 42)
+
+    img1 = PhotoImage(file = f"./images/partie1/img1.png")
+    btn_Accueil = Button(
+        image = img1,
+        borderwidth = 0,
+        highlightthickness = 0,
+        command = btnAccueil,
+        relief = "flat")
+
+    btn_Accueil.place(
+        x = 93, y = 91,
+        width = 118,
+        height = 109)
+
+    partie1.resizable(False, False)
+    partie1.mainloop()
+
+def partie2():
+    def btn_clicked():
+        partie2.destroy()
+        accueil()
+    partie2 = Tk()
+
+    partie2.geometry("1000x600")
+    partie2.configure(bg = "#ffffff")
+    canvas = Canvas(
+        partie2,
+        bg = "#ffffff",
+        height = 600,
+        width = 1000,
+        bd = 0,
+        highlightthickness = 0,
+        relief = "ridge")
+    canvas.place(x = 0, y = 0)
+
+    background_img = PhotoImage(file = f"./images/partie2/background.png")
+    background = canvas.create_image(
+        500.0, 300.0,
+        image=background_img)
+
+    entry0_img = PhotoImage(file = f"./images/partie2/img_textBox0.png")
+    entry0_bg = canvas.create_image(
+        477.0, 225.0,
+        image = entry0_img)
+
+    entry0 = Entry(
+        bd = 0,
+        bg = "#ffffff",
+        highlightthickness = 0)
+
+    entry0.place(
+        x = 279, y = 204,
+        width = 396,
+        height = 40)
+
+    img0 = PhotoImage(file = f"./images/partie2/img0.png")
     b0 = Button(
         image = img0,
         borderwidth = 0,
@@ -48,16 +149,16 @@ def partie1():
         relief = "flat")
 
     b0.place(
-        x = 693, y = 218,
+        x = 689, y = 228,
         width = 191,
         height = 42)
 
-    img1 = PhotoImage(file = f"./images/partie1/img1.png")
+    img1 = PhotoImage(file = f"./images/partie2/img1.png")
     b1 = Button(
         image = img1,
         borderwidth = 0,
         highlightthickness = 0,
-        command = btnAccueil,
+        command = btn_clicked,
         relief = "flat")
 
     b1.place(
@@ -65,14 +166,36 @@ def partie1():
         width = 118,
         height = 109)
 
-    partie1.resizable(False, False)
-    partie1.mainloop()
+    entry1_img = PhotoImage(file = f"./images/partie2/img_textBox1.png")
+    entry1_bg = canvas.create_image(
+        477.0, 281.0,
+        image = entry1_img)
+
+    entry1 = Entry(
+        bd = 0,
+        bg = "#ffffff",
+        highlightthickness = 0)
+
+    entry1.place(
+        x = 279, y = 260,
+        width = 396,
+        height = 40)
+
+    partie2.resizable(False, False)
+    partie2.mainloop()
+
+    
+# MAIN
 
 def accueil():
     
     def btnParti1():
         accueil.destroy()
         partie1()
+        
+    def btnParti2():
+        accueil.destroy()
+        partie2()
         
     accueil = Tk()
     accueil.geometry("1000x600")
@@ -110,7 +233,7 @@ def accueil():
         image = img1,
         borderwidth = 0,
         highlightthickness = 0,
-        command = btnParti1,
+        command = btnParti2,
         relief = "flat")
 
     b1.place(
