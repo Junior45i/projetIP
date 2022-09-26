@@ -114,16 +114,50 @@ def caracteristiquesClasse(numClasse):
         nbReseaux = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
         nbHotes = "Cette classe n'est pas utilisée pour l'adressage des hôtes"
     
-    return("Classe de l'adresse Ip : " + classe)
-    print("Nombre de réseaux de la classe : " + nbReseaux)
-    print("Nombre d'hôtes que peut fournir le réseau : " + nbHotes)
+    carac = []
+    carac.append(classe)
+    carac.append(nbReseaux)
+    carac.append(nbHotes)
+    print("Classe : " + carac[0])
+    print("Nbr réseaux : " + carac[1])
+    print("Nbr hôtes : " + carac[2])
+    return carac
+
+def determinationAdresse(ip, masque):
+    classeIpUtilisateur = determinationClasse(ip)
+    adresse = ""
+    broadcast = ""
+    adresseSR = ""
+    broadcastSR = ""
+
+    if(classeIpUtilisateur > 0 and classeIpUtilisateur < 5):
+        masqueIpClasse = val_masques_classes[classeIpUtilisateur-1]
+        adresse = "Adresse de réseau : " + str(calculAdresseReseau(ip,masqueIpClasse))
+        broadcast = "Adresse de broadcast du réseau : " + str(calculAdresseBroadcast(ip,masqueIpClasse))
+
+        if(masque != masqueIpClasse):
+            adresseSR = "Adresse de sous-réseau : " + str(calculAdresseReseau(ip,masque))
+            broadcastSR = "Adresse de broadcast du sous-réseau : " + str(calculAdresseBroadcast(ip,masque))
+    else:
+        adresse = "Adresse de réseau : " + str(calculAdresseReseau(ip,masque))
+        broadcast = "Adresse de broadcast du réseau : " + str(calculAdresseBroadcast(ip,masque))
+        adresseSR = "Il ne s'agit pas d'un sous-réseau"
+        broadcastSR = "Il ne s'agit pas d'un sous-réseau"
+    
+    adresses = []
+    adresses.append(adresse)
+    adresses.append(broadcast)
+    adresses.append(adresseSR)
+    adresses.append(broadcastSR)
+    print("Adresse : " + adresses[0])
+    print("Adresse BC : " + adresses[1])
+    print("Adresse SR : " + adresses[2])
+    print("Adresse SR BC : " + adresses[3])
+    return adresses
 
 # Fonction de la première fonctionnalité
 def fonctionnalite1():
     valid = False
-    classe = ""
-    nbReseaux = ""
-    nbHotes = ""
 
     while(valid == False):
         ipUtilisateur = input("Veuillez entrer une adresse Ip :")
@@ -155,17 +189,7 @@ def fonctionnalite2():
             print("Masque entré invalide")
             validMasque = False
 
-    classeIpUtilisateur = determinationClasse(ipUtilisateur)
-    if(classeIpUtilisateur > 0 and classeIpUtilisateur < 5):
-        masqueIpClasse = val_masques_classes[classeIpUtilisateur-1]
-        print("Adresse de réseau : " + str(calculAdresseReseau(ipUtilisateur,masqueIpClasse)))
-        print("Adresse de broadcast du réseau : " + str(calculAdresseBroadcast(ipUtilisateur,masqueIpClasse)))
-        if(masqueUtilisateur != masqueIpClasse):
-            print("Adresse de sous-réseau : " + str(calculAdresseReseau(ipUtilisateur,masqueUtilisateur)))
-            print("Adresse de broadcast du sous-réseau : " + str(calculAdresseBroadcast(ipUtilisateur,masqueUtilisateur)))
-    else:
-        print("Adresse de réseau : " + str(calculAdresseReseau(ipUtilisateur,masqueUtilisateur)))
-        print("Adresse de broadcast du réseau : " + str(calculAdresseBroadcast(ipUtilisateur,masqueUtilisateur)))
+    determinationAdresse(ipUtilisateur,masqueUtilisateur)
 
 
         
