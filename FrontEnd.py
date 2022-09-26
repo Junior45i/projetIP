@@ -140,7 +140,7 @@ def partie2():
         width = 396,
         height = 40)
 
-    img0 = PhotoImage(file = f"./images/partie2/img0.png")
+    img0 = PhotoImage(file = f"./images/partie2/img0.png") 
     b0 = Button(
         image = img0,
         borderwidth = 0,
