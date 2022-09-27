@@ -11,10 +11,15 @@ def partie1():
         accueil()
         
     def btnCalcul():
-        classe = AnalyseIP.caracteristiquesClasse(AnalyseIP.determinationClasse(entry0.get()))
-        lClasse.config(text=str(classe))
-        
-        return classe
+        if(AnalyseIP.validationIP(entry0.get())):
+            classe = AnalyseIP.caracteristiquesClasse(AnalyseIP.determinationClasse(entry0.get()))
+            lClasse.config(text=str(classe[0]))
+            lReseau.config(text=str(classe[1]))
+            lHote.config(text=str(classe[2]))
+        else:
+            lClasse.config(text="IP Invalide")
+            lReseau.config(text="IP Invalide")
+            lHote.config(text="IP Invalide")
         
     partie1 = Tk()
     partie1.geometry("1000x600")
@@ -58,14 +63,14 @@ def partie1():
         height = 30)
     lClasse['background'] = '#D9D9D9'
     
-    lReseau = Label(partie1, text = "test" )
+    lReseau = Label(partie1)
     lReseau.place(
         x = 350, y = 390,
         width = 300,
         height = 30)
     lReseau['background'] = '#D9D9D9'
     
-    lHote = Label(partie1, text = "test" )
+    lHote = Label(partie1)
     lHote.place(
         x = 350, y = 462,
         width = 300,
