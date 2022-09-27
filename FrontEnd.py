@@ -110,8 +110,28 @@ def partie2():
     def btn_clicked():
         partie2.destroy()
         accueil()
+        
+    def btnCalcul():
+        if(AnalyseIP.validationIP(entry0.get())):
+            if(AnalyseIP.validationMasque(entry1.get())):
+                adresses = AnalyseIP.determinationAdresse(entry0.get(),entry1.get())
+                lAdresse.config(text=str(adresses[0]))
+                lBroadcast.config(text=str(adresses[1]))
+                lAdresseSR.config(text=str(adresses[2]))
+                lBroadcastSR.config(text=str(adresses[3]))
+            else:
+                lAdresse.config(text="Masque Invalide")
+                lBroadcast.config(text="Masque Invalide")
+                lAdresseSR.config(text="Masque Invalide")
+                lBroadcastSR.config(text="Masque Invalide")
+        else:
+                lAdresse.config(text="IP invalide")
+                lBroadcast.config(text="IP invalide")
+                lAdresseSR.config(text="IP invalide")
+                lBroadcastSR.config(text="IP invalide")
+        
+        
     partie2 = Tk()
-
     partie2.geometry("1000x600")
     partie2.configure(bg = "#ffffff")
     canvas = Canvas(
@@ -149,7 +169,7 @@ def partie2():
         image = img0,
         borderwidth = 0,
         highlightthickness = 0,
-        command = btn_clicked,
+        command = btnCalcul,
         relief = "flat")
 
     b0.place(
@@ -184,6 +204,35 @@ def partie2():
         x = 279, y = 260,
         width = 396,
         height = 40)
+
+    # Liste des lables d'affichage
+    lAdresse = Label(partie2, text="test")
+    lAdresse.place(
+        x = 600, y = 330,
+        width = 300,
+        height = 30)
+    lAdresse['background'] = '#D9D9D9'
+    
+    lBroadcast = Label(partie2,text="test")
+    lBroadcast.place(
+        x = 600, y = 373,
+        width = 300,
+        height = 30)
+    lBroadcast['background'] = '#D9D9D9'
+    
+    lAdresseSR = Label(partie2,text="test")
+    lAdresseSR.place(
+        x = 600, y = 415,
+        width = 300,
+        height = 30)
+    lAdresseSR['background'] = '#D9D9D9'
+    
+    lBroadcastSR = Label(partie2,text="test")
+    lBroadcastSR.place(
+        x = 600, y = 459,
+        width = 300,
+        height = 30)
+    lBroadcastSR['background'] = '#D9D9D9'
 
     partie2.resizable(False, False)
     partie2.mainloop()
