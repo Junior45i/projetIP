@@ -8,9 +8,9 @@ regex_ip = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4]
 
 # Informations des classes Ligne = Classes /// Colonnes = nbr Rés, nbr Hôt
 infos_classes = [
-                    ["256","2exp24"],
-                    ["2exp16","2exp16-2"],
-                    ["2exp24","2exp8-2"]
+                    ["256","16777216"],
+                    ["65536","65534"],
+                    ["16777216","254"]
                 ]
 
 # Valeurs possibles des octets de masques
