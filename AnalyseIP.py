@@ -134,16 +134,19 @@ def determinationAdresse(ip, masque):
     adresseSR = ""
     broadcastSR = ""
 
-    if(classeIpUtilisateur > 0 and classeIpUtilisateur < 5):
+    if(classeIpUtilisateur >= 0 and classeIpUtilisateur < 5):
         masqueIpClasse = val_masques_classes[classeIpUtilisateur-1]
         adresse = str(calculAdresseReseau(ip,masqueIpClasse))
-        broadcast =str(calculAdresseBroadcast(ip,masqueIpClasse))
+        broadcast = str(calculAdresseBroadcast(ip,masqueIpClasse))
 
         if(masque != masqueIpClasse):
-            adresseSR =str(calculAdresseReseau(ip,masque))
+            adresseSR = str(calculAdresseReseau(ip,masque))
             broadcastSR = str(calculAdresseBroadcast(ip,masque))
+        else:
+            adresseSR = "Il ne s'agit pas d'un sous-réseau"
+            broadcastSR = "Il ne s'agit pas d'un sous-réseau"
     else:
-        adresse =str(calculAdresseReseau(ip,masque))
+        adresse = str(calculAdresseReseau(ip,masque))
         broadcast = str(calculAdresseBroadcast(ip,masque))
         adresseSR = "Il ne s'agit pas d'un sous-réseau"
         broadcastSR = "Il ne s'agit pas d'un sous-réseau"
