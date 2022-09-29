@@ -162,6 +162,10 @@ def determinationAdresse(ip, masque):
     print("Adresse SR BC : " + adresses[3])
     return adresses
 
+def verifEgaliteAdresse(ip, mask, adresse):
+    adresseACompare = calculAdresseReseau(ip, mask)
+    return str(adresseACompare) == str(adresse)
+
 # Fonction de la première fonctionnalité
 def fonctionnalite1():
     valid = False
@@ -197,6 +201,42 @@ def fonctionnalite2():
             validMasque = False
 
     determinationAdresse(ipUtilisateur,masqueUtilisateur)
+
+def fonctionnalite3():
+    validIp = False
+    validMasque = False
+    validAdresse = False
+    ipUtilisateur = ""
+    masqueUtilisateur = ""
+    adresseUtilisateur = ""
+
+    while(validIp == False):
+        ipUtilisateur = input("Veuillez entrer une adresse Ip :")
+        validIp = True
+        if(validationIP(ipUtilisateur) == False):
+            print("Adresse Ip entrée invalide")
+            validIp = False
+
+    while(validMasque == False):
+        masqueUtilisateur = input("Veuillez entrer un masque de réseau :")
+        validMasque = True
+        if(validationMasque(masqueUtilisateur) == False):
+            print("Masque entré invalide")
+            validMasque = False
+
+    while(validAdresse == False):
+        adresseUtilisateur = input("Veuillez entrer une adresse réseau :")
+        validAdresse = True
+        if(validationIP(adresseUtilisateur) == False):
+            print("Adresse réseau entrée invalide")
+            validAdresse = False
+
+    if(verifEgaliteAdresse(ipUtilisateur, masqueUtilisateur, adresseUtilisateur)):
+        print("Cette Ip fait partie de ce réseau")
+    else:
+        print("Cette Ip ne fait pas partie de ce réseau")
+
+fonctionnalite3()
 
 
         
