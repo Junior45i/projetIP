@@ -2,6 +2,37 @@ from cgi import test
 from tkinter import *
 from tokenize import String
 import AnalyseIP
+from tkinter import messagebox
+import mysql.connector
+from mysql.connector import Error
+
+
+connectiondb = mysql.connector.connect(host="localhost",user="root",passwd="",database="ppython")
+cursordb = connectiondb.cursor()
+
+
+def login_verification():
+    user_verification = entry1.get()
+    pass_verification = entry0.get()
+    sql = "select * from utilisateur where nomUtilisateur = %s and mdpUtilisateur = %s"
+    cursordb.execute(sql,[(user_verification),(pass_verification)])
+    results = cursordb.fetchall()
+    print(results)
+    if results:
+        connection.destroy()    
+        accueil()
+    else:
+        messagebox.showerror("Erreur", "Combinaison LOGIN/MDP incorrecte")
+    
+
+
+# Créer une frame de la taille de la fenêtre
+# Cela permet de ne pas supprimer la fenetre
+
+
+# liste des variables
+tailleEcran = "1000x600"
+colorBack = "#D9D9D9"
 
 
 def partie1():
@@ -61,21 +92,21 @@ def partie1():
         x = 350, y = 315,
         width = 300,
         height = 30)
-    lClasse['background'] = '#D9D9D9'
+    lClasse['background'] = colorBack
     
     lReseau = Label(partie1)
     lReseau.place(
         x = 350, y = 390,
         width = 300,
         height = 30)
-    lReseau['background'] = '#D9D9D9'
+    lReseau['background'] = colorBack
     
     lHote = Label(partie1)
     lHote.place(
         x = 350, y = 462,
         width = 300,
         height = 30)
-    lHote['background'] = '#D9D9D9'
+    lHote['background'] = colorBack
 
     img0 = PhotoImage(file = f"./images/partie1/img0.png")
     btn_calcul = Button(
@@ -205,34 +236,34 @@ def partie2():
         width = 396,
         height = 40)
 
-    # Liste des lables d'affichage
-    lAdresse = Label(partie2, text="test")
+    # Liste des labels d'affichage
+    lAdresse = Label(partie2, text="")
     lAdresse.place(
         x = 600, y = 330,
         width = 300,
         height = 30)
-    lAdresse['background'] = '#D9D9D9'
+    lAdresse['background'] = colorBack
     
-    lBroadcast = Label(partie2,text="test")
+    lBroadcast = Label(partie2,text="")
     lBroadcast.place(
         x = 600, y = 373,
         width = 300,
         height = 30)
-    lBroadcast['background'] = '#D9D9D9'
+    lBroadcast['background'] = colorBack
     
-    lAdresseSR = Label(partie2,text="test")
+    lAdresseSR = Label(partie2,text="")
     lAdresseSR.place(
         x = 600, y = 415,
         width = 300,
         height = 30)
-    lAdresseSR['background'] = '#D9D9D9'
+    lAdresseSR['background'] = colorBack
     
-    lBroadcastSR = Label(partie2,text="test")
+    lBroadcastSR = Label(partie2,text="")
     lBroadcastSR.place(
         x = 600, y = 459,
         width = 300,
         height = 30)
-    lBroadcastSR['background'] = '#D9D9D9'
+    lBroadcastSR['background'] = colorBack
 
     partie2.resizable(False, False)
     partie2.mainloop()
@@ -340,11 +371,13 @@ def btn_clicked():
     if(entry1.get()=="test" and entry0.get()=="test2"):
         connection.destroy()
         accueil()
-    
+    else:
+        messagebox.showerror("Erreur", "Combinaison LOGIN/MDP incorrecte")
 
 connection = Tk()
 connection.geometry("1000x600")
 connection.configure(bg = "#FFFFFF")
+# essayer de créer une frame
 canvas = Canvas(
     connection,
     bg = "#FFFFFF",
@@ -368,7 +401,9 @@ entry0_bg = canvas.create_image(
 entry0 = Entry(
     bd = 0,
     bg = "#1094cb",
-    highlightthickness = 0)
+    highlightthickness = 0,
+    show='*'
+    )
 
 entry0.place(
     x = 138.0, y = 313,
@@ -395,7 +430,7 @@ b0 = Button(
     image = img0,
     borderwidth = 0,
     highlightthickness = 0,
-    command = btn_clicked,
+    command = login_verification,
     relief = "flat")
 
 b0.place(
