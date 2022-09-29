@@ -1,3 +1,4 @@
+from base64 import encode
 from cgi import test
 from tkinter import *
 from tokenize import String
@@ -5,6 +6,7 @@ import AnalyseIP
 from tkinter import messagebox
 import mysql.connector
 from mysql.connector import Error
+import bcrypt
 
 
 connectiondb = mysql.connector.connect(host="localhost",user="root",passwd="",database="ppython")
@@ -12,18 +14,33 @@ cursordb = connectiondb.cursor()
 
 
 def login_verification():
+    user_verification = ""
     user_verification = entry1.get()
     pass_verification = entry0.get()
-    sql = "select * from utilisateur where nomUtilisateur = %s and mdpUtilisateur = %s"
-    cursordb.execute(sql,[(user_verification),(pass_verification)])
-    results = cursordb.fetchall()
-    print(results)
+    #Hash et sal
+    pass_verification = pass_verification.encode('utf-8')
+    saltDepart = bcrypt.gensalt(rounds=10)
+    hashedDepart = bcrypt.hashpw(pass_verification, saltDepart)
+    print(hashedDepart)
+    # requetes sql
+    # try:
+    result = ""
+    sql = "select mdpUtilisateur from utilisateur where nomUtilisateur = %s"
+    cursordb.execute(sql,[(user_verification)])
+    results = cursordb.fetchone()
+    result = results[0]
+    result = str(result)
+    result = result.encode('utf-8')
     if results:
-        connection.destroy()    
-        accueil()
+        if(bcrypt.checkpw(pass_verification,result)):
+            connection.destroy()    
+            accueil()
+        else:
+            messagebox.showerror("Erreur", "Combinaison LOGIN/MDP incorrecte")
     else:
         messagebox.showerror("Erreur", "Combinaison LOGIN/MDP incorrecte")
-    
+    # except:
+    #         messagebox.showerror("Erreur", "Combinaison LOGIN/MDP incorrecte")
 
 
 # Créer une frame de la taille de la fenêtre
