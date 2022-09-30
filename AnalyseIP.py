@@ -293,7 +293,7 @@ def fonctionnalite4():
         print("Les deux machines ne considère pas l'autre comme faisant partie de son réseau")
 
 
-fonctionnalite4()
+# fonctionnalite4()
 
 
         
