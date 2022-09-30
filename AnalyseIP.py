@@ -162,9 +162,19 @@ def determinationAdresse(ip, masque):
     print("Adresse SR BC : " + adresses[3])
     return adresses
 
+# Fonction permettant de vérifier si une ip et son masque entrés font parties de l'adresse réseau entrée également
 def verifEgaliteAdresse(ip, mask, adresse):
     adresseACompare = calculAdresseReseau(ip, mask)
     return str(adresseACompare) == str(adresse)
+
+# Fonction permettant de vérifier si 2 ip et et leurs masques font parties d'un même réseau
+def verifEgaliteAdresseDeuxIp(ip1, mask1, ip2, mask2):
+    adresse1 = str(calculAdresseReseau(ip1, mask1))
+    adresse2 = str(calculAdresseReseau(ip2, mask2))
+    adresseCroise1 = str(calculAdresseReseau(ip1, mask2))
+    adresseCroise2 = str(calculAdresseReseau(ip2, mask1))
+
+    return adresse1 == adresse2 == adresseCroise1 == adresseCroise2
 
 # Fonction de la première fonctionnalité
 def fonctionnalite1():
@@ -202,6 +212,7 @@ def fonctionnalite2():
 
     determinationAdresse(ipUtilisateur,masqueUtilisateur)
 
+# Fonction de la troisième fonctionnalité
 def fonctionnalite3():
     validIp = False
     validMasque = False
@@ -236,7 +247,53 @@ def fonctionnalite3():
     else:
         print("Cette Ip ne fait pas partie de ce réseau")
 
-# fonctionnalite3()
+# Fonction de la quatrième fonctionnalité
+def fonctionnalite4():
+    validIp1 = False
+    validMasque1 = False
+    validIp2 = False
+    validMasque2 = False
+
+    ipUtilisateur1 = ""
+    ipUtilisateur2 = ""
+    masqueUtilisateur1 = ""
+    masqueUtilisateur2 = ""
+
+    while(validIp1 == False):
+        ipUtilisateur1 = input("Veuillez entrer une première adresse Ip :")
+        validIp1 = True
+        if(validationIP(ipUtilisateur1) == False):
+            print("Adresse Ip entrée invalide")
+            validIp1 = False
+
+    while(validMasque1 == False):
+        masqueUtilisateur1 = input("Veuillez son masque de réseau :")
+        validMasque1 = True
+        if(validationMasque(masqueUtilisateur1) == False):
+            print("Masque entré invalide")
+            validMasque1 = False
+    
+    while(validIp2 == False):
+        ipUtilisateur2 = input("Veuillez entrer une seconde adresse Ip :")
+        validIp2 = True
+        if(validationIP(ipUtilisateur2) == False):
+            print("Adresse Ip entrée invalide")
+            validIp2 = False
+
+    while(validMasque2 == False):
+        masqueUtilisateur2 = input("Veuillez son masque de réseau :")
+        validMasque2 = True
+        if(validationMasque(masqueUtilisateur2) == False):
+            print("Masque entré invalide")
+            validMasque2 = False
+
+    if(verifEgaliteAdresseDeuxIp(ipUtilisateur1,masqueUtilisateur1,ipUtilisateur2,masqueUtilisateur2)):
+        print("Les deux machines considère l'autre comme faisant partie de son réseau")
+    else:
+        print("Les deux machines ne considère pas l'autre comme faisant partie de son réseau")
+
+
+fonctionnalite4()
 
 
         
