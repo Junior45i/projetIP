@@ -3,6 +3,7 @@ from tabnanny import check
 import re
 import ipaddress
 import socket
+from unicodedata import decimal
 
 # Regex de vérification d'une Ip
 regex_ip = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
@@ -196,6 +197,23 @@ def convertMaskBin(mask):
 
     masqueBin = concatTot[:35]
     return masqueBin
+
+# Fonction permettant de convertir un masque binaire en décimal
+def convertMaskDec(mask):
+    masque_split = []
+    masque_split = mask.split(".")
+    i = 0
+    concatTot = ""
+    
+    for m in masque_split:
+        concat = ""
+        masque_split[i] = str(int(masque_split[i], 2))
+        concat = masque_split[i]
+        concatTot += str(concat) + "."
+        i += 1
+
+    masqueDec = concatTot[:-1]
+    return masqueDec
     
 # Calcul du nombre d'hôtes maximums du réseau (fct 5.1)
 def calculNombreHotesReseau(mask):
@@ -223,6 +241,30 @@ def calculNombresHotesParSousReseau(nbSrUtilisateur, mask):
 
     return 0
 
+# Fonction permettant de vérifier si un masque CIDR est valide ou non
+def validationMasqueCidr(maskCidr):
+    if(maskCidr.isdigit()):
+        if(int(maskCidr) >= 1 and int(maskCidr) <= 32):
+            return True
+    return False
+
+# Fonction permettant de convertir un masque CIDR en masque decimal pointé
+def convertMaskCidr(maskCidr):
+    masqueBin = ""
+    i = 0
+    for i in range(1, 33):
+        if(i <= int(maskCidr)):
+            masqueBin += "1"
+        else:
+            masqueBin += "0"
+
+        if(i % 8 == 0):
+            masqueBin += "."
+
+    masqueBin = masqueBin[:35]
+    masqueDec = convertMaskDec(masqueBin)
+
+    return masqueDec
 
 # Fonction de la première fonctionnalité
 def fonctionnalite1():
@@ -340,8 +382,7 @@ def fonctionnalite4():
     else:
         print("Les deux machines ne considère pas l'autre comme faisant partie de son réseau")
 
-# print(calculNombresHotesParSousReseau(1500,"255.255.0.0"))
-
+# print(convertMaskCidr("17"))
 
         
     
