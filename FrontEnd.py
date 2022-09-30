@@ -21,7 +21,6 @@ def login_verification():
     pass_verification = pass_verification.encode('utf-8')
     saltDepart = bcrypt.gensalt(rounds=10)
     hashedDepart = bcrypt.hashpw(pass_verification, saltDepart)
-    print(hashedDepart)
     # requetes sql
     # try:
     result = ""
@@ -53,6 +52,8 @@ def login_verification():
 # liste des variables
 tailleEcran = "1000x600"
 colorBack = "#D9D9D9"
+font_police="calibri"
+taille_police=14
 
 
 def partie1():
@@ -98,28 +99,29 @@ def partie1():
     entry0 = Entry(
         bd = 0,
         bg = "#ffffff",
-        highlightthickness = 0)
+        highlightthickness = 0,
+        font=(font_police,taille_police))
 
     entry0.place(
         x = 282, y = 218,
         width = 396,
         height = 40)
 
-    lClasse = Label(partie1)
+    lClasse = Label(partie1, font=( font_police,taille_police))
     lClasse.place(
         x = 350, y = 315,
         width = 300,
         height = 30)
     lClasse['background'] = colorBack
     
-    lReseau = Label(partie1)
+    lReseau = Label(partie1,font=( font_police,taille_police))
     lReseau.place(
         x = 350, y = 390,
         width = 300,
         height = 30)
     lReseau['background'] = colorBack
     
-    lHote = Label(partie1)
+    lHote = Label(partie1, font=( font_police,taille_police))
     lHote.place(
         x = 350, y = 462,
         width = 300,
@@ -132,7 +134,8 @@ def partie1():
         borderwidth = 0,
         highlightthickness = 0,
         command = btnCalcul,
-        relief = "flat")
+        relief = "flat",
+        bg=colorBack)
 
     btn_calcul.place(
         x = 693, y = 218,
@@ -145,7 +148,8 @@ def partie1():
         borderwidth = 0,
         highlightthickness = 0,
         command = btnAccueil,
-        relief = "flat")
+        relief = "flat",
+        bg=colorBack)
 
     btn_Accueil.place(
         x = 93, y = 91,
@@ -206,7 +210,7 @@ def partie2():
     entry0 = Entry(
         bd = 0,
         bg = "#ffffff",
-        highlightthickness = 0)
+        highlightthickness = 0,font=( font_police,taille_police))
 
     entry0.place(
         x = 279, y = 204,
@@ -232,7 +236,8 @@ def partie2():
         borderwidth = 0,
         highlightthickness = 0,
         command = btn_clicked,
-        relief = "flat")
+        relief = "flat",
+        bg=colorBack)
 
     b1.place(
         x = 93, y = 91,
@@ -247,7 +252,7 @@ def partie2():
     entry1 = Entry(
         bd = 0,
         bg = "#ffffff",
-        highlightthickness = 0)
+        highlightthickness = 0,font=( font_police,taille_police))
 
     entry1.place(
         x = 279, y = 260,
@@ -255,28 +260,28 @@ def partie2():
         height = 40)
 
     # Liste des labels d'affichage
-    lAdresse = Label(partie2, text="")
+    lAdresse = Label(partie2, text="", font=( font_police,taille_police))
     lAdresse.place(
         x = 600, y = 330,
         width = 300,
         height = 30)
     lAdresse['background'] = colorBack
     
-    lBroadcast = Label(partie2,text="")
+    lBroadcast = Label(partie2,text="", font=( font_police,taille_police))
     lBroadcast.place(
         x = 600, y = 373,
         width = 300,
         height = 30)
     lBroadcast['background'] = colorBack
     
-    lAdresseSR = Label(partie2,text="")
+    lAdresseSR = Label(partie2,text="", font=( font_police,taille_police))
     lAdresseSR.place(
         x = 600, y = 415,
         width = 300,
         height = 30)
     lAdresseSR['background'] = colorBack
     
-    lBroadcastSR = Label(partie2,text="")
+    lBroadcastSR = Label(partie2,text="", font=( font_police,taille_police))
     lBroadcastSR.place(
         x = 600, y = 459,
         width = 300,
@@ -329,7 +334,7 @@ def partie3():
         500.0, 231.0,
         image = entry0_img)
 
-    lResult = Label(partie3, text="")
+    lResult = Label(partie3, text="", font=( font_police,taille_police))
     lResult.place(
         x = 400, y = 430,
         width = 300,
@@ -339,7 +344,7 @@ def partie3():
     entry0 = Entry(
         bd = 0,
         bg = "#ffffff",
-        highlightthickness = 0)
+        highlightthickness = 0,font=( font_police,taille_police))
 
     entry0.place(
         x = 302, y = 210,
@@ -354,7 +359,7 @@ def partie3():
     entry1 = Entry(
         bd = 0,
         bg = "#ffffff",
-        highlightthickness = 0)
+        highlightthickness = 0,font=( font_police,taille_police))
 
     entry1.place(
         x = 302, y = 274,
@@ -369,7 +374,8 @@ def partie3():
     entry2 = Entry(
         bd = 0,
         bg = "#ffffff",
-        highlightthickness = 0)
+        highlightthickness = 0,
+        font=( font_police,taille_police))
 
     entry2.place(
         x = 302, y = 337,
@@ -382,7 +388,8 @@ def partie3():
         borderwidth = 0,
         highlightthickness = 0,
         command = btnCalcul,
-        relief = "flat")
+        relief = "flat",
+        bg=colorBack)
 
     b0.place(
         x = 139, y = 420,
@@ -395,7 +402,8 @@ def partie3():
         borderwidth = 0,
         highlightthickness = 0,
         command = btnAccueil,
-        relief = "flat")
+        relief = "flat",
+        bg=colorBack)
 
     b1.place(
         x = 93, y = 91,
@@ -452,7 +460,7 @@ def partie4():
         480.0, 239.0,
         image = entry0_img)
 
-    lResult = Label(partie4,text="")
+    lResult = Label(partie4,text="", font=( font_police,taille_police))
     lResult.place(
         x = 250, y = 459,
         width = 500,
@@ -462,7 +470,8 @@ def partie4():
     entry0 = Entry(
         bd = 0,
         bg = "#ffffff",
-        highlightthickness = 0)
+        highlightthickness = 0,
+        font=( font_police,taille_police))
 
     entry0.place(
         x = 282, y = 218,
@@ -475,7 +484,8 @@ def partie4():
         borderwidth = 0,
         highlightthickness = 0,
         command = btnCalcul,
-        relief = "flat")
+        relief = "flat",
+        bg=colorBack)
 
     b0.place(
         x = 707, y = 298,
@@ -488,7 +498,8 @@ def partie4():
         borderwidth = 0,
         highlightthickness = 0,
         command = btnAccueil,
-        relief = "flat")
+        relief = "flat",
+        bg=colorBack)
 
     b1.place(
         x = 93, y = 91,
@@ -503,7 +514,8 @@ def partie4():
     entry1 = Entry(
         bd = 0,
         bg = "#ffffff",
-        highlightthickness = 0)
+        highlightthickness = 0,
+        font=( font_police,taille_police))
 
     entry1.place(
         x = 282, y = 270,
@@ -518,7 +530,8 @@ def partie4():
     entry2 = Entry(
         bd = 0,
         bg = "#ffffff",
-        highlightthickness = 0)
+        highlightthickness = 0,
+        font=( font_police,taille_police))
 
     entry2.place(
         x = 282, y = 340,
@@ -533,7 +546,8 @@ def partie4():
     entry3 = Entry(
         bd = 0,
         bg = "#ffffff",
-        highlightthickness = 0)
+        highlightthickness = 0,
+        font=( font_police,taille_police))
 
     entry3.place(
         x = 281, y = 392,
@@ -587,7 +601,8 @@ def accueil():
         borderwidth = 0,
         highlightthickness = 0,
         command = btnParti1,
-        relief = "flat")
+        relief = "flat",
+        bg=colorBack)
 
     b0.place(
         x = 578, y = 100,
@@ -600,7 +615,8 @@ def accueil():
         borderwidth = 0,
         highlightthickness = 0,
         command = btnParti2,
-        relief = "flat")
+        relief = "flat",
+        bg=colorBack)
 
     b1.place(
         x = 578, y = 183,
@@ -613,7 +629,8 @@ def accueil():
         borderwidth = 0,
         highlightthickness = 0,
         command = btnParti4,
-        relief = "flat")
+        relief = "flat",
+        bg=colorBack)
 
     b2.place(
         x = 578, y = 349,
@@ -626,7 +643,8 @@ def accueil():
         borderwidth = 0,
         highlightthickness = 0,
         command = btnParti1,
-        relief = "flat")
+        relief = "flat",
+        bg=colorBack)
 
     b3.place(
         x = 578, y = 432,
@@ -639,7 +657,8 @@ def accueil():
         borderwidth = 0,
         highlightthickness = 0,
         command = btnParti3,
-        relief = "flat")
+        relief = "flat",
+        bg=colorBack)
 
     b4.place(
         x = 578, y = 266,
@@ -648,13 +667,6 @@ def accueil():
 
     accueil.resizable(False, False)
     accueil.mainloop()
-
-def btn_clicked():
-    if(entry1.get()=="test" and entry0.get()=="test2"):
-        connection.destroy()
-        accueil()
-    else:
-        messagebox.showerror("Erreur", "Combinaison LOGIN/MDP incorrecte")
 
 connection = Tk()
 connection.geometry("1000x600")
@@ -700,7 +712,8 @@ entry1_bg = canvas.create_image(
 entry1 = Entry(
     bd = 0,
     bg = "#1094cb",
-    highlightthickness = 0)
+    highlightthickness = 0,
+    font=( font_police,taille_police))
 
 entry1.place(
     x = 139.0, y = 261,
@@ -713,7 +726,8 @@ b0 = Button(
     borderwidth = 0,
     highlightthickness = 0,
     command = login_verification,
-    relief = "flat")
+    relief = "flat",
+    bg=colorBack)
 
 b0.place(
     x = 156, y = 410,
