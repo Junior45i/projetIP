@@ -167,6 +167,7 @@ def verifEgaliteAdresse(ip, mask, adresse):
     adresseACompare = calculAdresseReseau(ip, mask)
     return str(adresseACompare) == str(adresse)
 
+# Fonction permettant de vérifier si 2 ip et et leurs masques font parties d'un même réseau
 def verifEgaliteAdresseDeuxIp(ip1, mask1, ip2, mask2):
     adresse1 = str(calculAdresseReseau(ip1, mask1))
     adresse2 = str(calculAdresseReseau(ip2, mask2))
@@ -246,6 +247,7 @@ def fonctionnalite3():
     else:
         print("Cette Ip ne fait pas partie de ce réseau")
 
+# Fonction de la quatrième fonctionnalité
 def fonctionnalite4():
     validIp1 = False
     validMasque1 = False
