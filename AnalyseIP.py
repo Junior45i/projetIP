@@ -162,6 +162,7 @@ def determinationAdresse(ip, masque):
     print("Adresse SR BC : " + adresses[3])
     return adresses
 
+# Fonction permettant de vérifier si une ip et son masque entrés font parties de l'adresse réseau entrée également
 def verifEgaliteAdresse(ip, mask, adresse):
     adresseACompare = calculAdresseReseau(ip, mask)
     return str(adresseACompare) == str(adresse)
@@ -202,6 +203,7 @@ def fonctionnalite2():
 
     determinationAdresse(ipUtilisateur,masqueUtilisateur)
 
+# Fonction de la troisième fonctionnalité
 def fonctionnalite3():
     validIp = False
     validMasque = False
