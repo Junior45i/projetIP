@@ -1,3 +1,4 @@
+from itertools import count
 from tabnanny import check
 import re
 import ipaddress
@@ -176,6 +177,53 @@ def verifEgaliteAdresseDeuxIp(ip1, mask1, ip2, mask2):
 
     return adresse1 == adresse2 == adresseCroise1 == adresseCroise2
 
+# Fonction permettant de transfomer un masque decimal en binaire
+def convertMaskBin(mask):
+    masque_split = []
+    masque_split = mask.split(".")
+    i = 0
+    concatTot = ""
+    
+    for m in masque_split:
+        concat = ""
+        masque_split[i] = bin(int(masque_split[i]))
+        concat = masque_split[i]
+        concat = concat[2:]
+        while(len(concat) != 8):
+            concat += "0"
+        i += 1
+        concatTot += concat + "."
+
+    masqueBin = concatTot[:35]
+    return masqueBin
+    
+# Calcul du nombre d'hôtes maximums du réseau (fct 5.1)
+def calculNombreHotesReseau(mask):
+    masqueBin = convertMaskBin(mask)
+    nbZeros = masqueBin.count("0")
+    return pow(2, nbZeros) - 2
+
+# Fonction permettant de vérifier si une découpe classque en fonction du nbr de SR est possible
+# Renvoie 0 si impossible et renvoi le nombre d'hôtes max par SR si oui
+def calculNombresHotesParSousReseau(nbSrUtilisateur, mask):
+    masqueBin = convertMaskBin(mask)
+    nbZeros = masqueBin.count("0")
+    nbSrMax = pow(2, nbZeros-2) - 1
+
+    if(nbSrUtilisateur <= nbSrMax):
+        i = 1
+        nbSousReseau = pow(2, i) - 1
+        while(nbSousReseau < nbSrUtilisateur):
+            i += 1
+            nbSousReseau = pow(2, i) - 1
+        
+        nbZerosSousReseau = i
+        nbZerosHotes = nbZeros - nbZerosSousReseau
+        return pow(2, nbZerosHotes) - 2
+
+    return 0
+
+
 # Fonction de la première fonctionnalité
 def fonctionnalite1():
     valid = False
@@ -292,8 +340,7 @@ def fonctionnalite4():
     else:
         print("Les deux machines ne considère pas l'autre comme faisant partie de son réseau")
 
-
-# fonctionnalite4()
+# print(calculNombresHotesParSousReseau(1500,"255.255.0.0"))
 
 
         
