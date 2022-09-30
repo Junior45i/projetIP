@@ -197,11 +197,32 @@ def convertMaskBin(mask):
     masqueBin = concatTot[:35]
     return masqueBin
     
-# Calcul du nombre d'hôtes maximums du réseau
-def calculNombreHotesReseau(ip, mask):
+# Calcul du nombre d'hôtes maximums du réseau (fct 5.1)
+def calculNombreHotesReseau(mask):
     masqueBin = convertMaskBin(mask)
     nbZeros = masqueBin.count("0")
     return pow(2, nbZeros) - 2
+
+# Fonction permettant de vérifier si une découpe classque en fonction du nbr de SR est possible
+# Renvoie 0 si impossible et renvoi le nombre d'hôtes max par SR si oui
+def calculNombresHotesParSousReseau(nbSrUtilisateur, mask):
+    masqueBin = convertMaskBin(mask)
+    nbZeros = masqueBin.count("0")
+    nbSrMax = pow(2, nbZeros-2) - 1
+
+    if(nbSrUtilisateur <= nbSrMax):
+        i = 1
+        nbSousReseau = pow(2, i) - 1
+        while(nbSousReseau < nbSrUtilisateur):
+            i += 1
+            nbSousReseau = pow(2, i) - 1
+        
+        nbZerosSousReseau = i
+        nbZerosHotes = nbZeros - nbZerosSousReseau
+        return pow(2, nbZerosHotes) - 2
+
+    return 0
+
 
 # Fonction de la première fonctionnalité
 def fonctionnalite1():
@@ -319,7 +340,7 @@ def fonctionnalite4():
     else:
         print("Les deux machines ne considère pas l'autre comme faisant partie de son réseau")
 
-#print(calculNombreHotesReseau("192.2.2.2","255.255.0.0"))
+# print(calculNombresHotesParSousReseau(1500,"255.255.0.0"))
 
 
         
