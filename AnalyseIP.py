@@ -236,7 +236,7 @@ def fonctionnalite3():
     else:
         print("Cette Ip ne fait pas partie de ce réseau")
 
-fonctionnalite3()
+# fonctionnalite3()
 
 
         

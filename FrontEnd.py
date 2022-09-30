@@ -25,19 +25,22 @@ def login_verification():
     # requetes sql
     # try:
     result = ""
-    sql = "select mdpUtilisateur from utilisateur where nomUtilisateur = %s"
-    cursordb.execute(sql,[(user_verification)])
-    results = cursordb.fetchone()
-    result = results[0]
-    result = str(result)
-    result = result.encode('utf-8')
-    if results:
-        if(bcrypt.checkpw(pass_verification,result)):
-            connection.destroy()    
-            accueil()
+    try:
+        sql = "select mdpUtilisateur from utilisateur where nomUtilisateur = %s"
+        cursordb.execute(sql,[(user_verification)])
+        results = cursordb.fetchone()
+        result = results[0]
+        result = str(result)
+        result = result.encode('utf-8')
+        if results:
+            if(bcrypt.checkpw(pass_verification,result)):
+                connection.destroy()    
+                accueil()
+            else:
+                messagebox.showerror("Erreur", "Combinaison LOGIN/MDP incorrecte")
         else:
             messagebox.showerror("Erreur", "Combinaison LOGIN/MDP incorrecte")
-    else:
+    except:
         messagebox.showerror("Erreur", "Combinaison LOGIN/MDP incorrecte")
     # except:
     #         messagebox.showerror("Erreur", "Combinaison LOGIN/MDP incorrecte")
