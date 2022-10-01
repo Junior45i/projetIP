@@ -221,8 +221,8 @@ def calculNombreHotesReseau(mask):
     nbZeros = masqueBin.count("0")
     return pow(2, nbZeros) - 2
 
-# Fonction permettant de vérifier si une découpe classque en fonction du nbr de SR est possible
-# Renvoie 0 si impossible et renvoi le nombre d'hôtes max par SR si oui
+# Fonction permettant de vérifier si une découpe classique en fonction du nbr de SR est possible
+# Renvoie -1 si impossible et renvoi le nombre d'hôtes max par SR si oui
 def calculNombresHotesParSousReseau(nbSrUtilisateur, mask):
     masqueBin = convertMaskBin(mask)
     nbZeros = masqueBin.count("0")
@@ -239,7 +239,27 @@ def calculNombresHotesParSousReseau(nbSrUtilisateur, mask):
         nbZerosHotes = nbZeros - nbZerosSousReseau
         return pow(2, nbZerosHotes) - 2
 
-    return 0
+    return -1
+
+# Fonction permettant de vérifier si une découpe classique en fonction du nbr d'hôtes par SR est possible
+# Renvoie -1 si impossible et renvoi le nombre de SR max si oui (possible valeur 0 si seulement 1 réseau et pas de SR)
+def calculNombresReseaux(nbHotesSrUtilisateur, mask):
+    masqueBin = convertMaskBin(mask)
+    nbZeros = masqueBin.count("0")
+    nbHotesSrMax = pow(2, nbZeros) - 2
+
+    if(nbHotesSrUtilisateur <= nbHotesSrMax):
+        i = 1
+        nbHotesSr = pow(2, i) - 2
+        while(nbHotesSr < nbHotesSrUtilisateur):
+            i += 1
+            nbHotesSr = pow(2, i) - 2
+
+        nbZerosHotes = i
+        nbZerosSousReseau = nbZeros - nbZerosHotes
+        return pow(2, nbZerosSousReseau) - 1
+
+    return -1
 
 # Fonction permettant de vérifier si un masque CIDR est valide ou non
 def validationMasqueCidr(maskCidr):
@@ -382,7 +402,7 @@ def fonctionnalite4():
     else:
         print("Les deux machines ne considère pas l'autre comme faisant partie de son réseau")
 
-# print(convertMaskCidr("17"))
+# print(calculNombresReseaux(10,"255.255.0.0"))
 
         
     
