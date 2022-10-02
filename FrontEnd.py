@@ -568,9 +568,33 @@ def partie5():
     def btnAccueil():
         partie5.destroy()
         accueil()
-        
+       
+    #A terminer 
     def btnCalcul():
-        return 0
+        if(AnalyseIP.validationIP(entry0.get())):
+            if(AnalyseIP.validationMasque(entry1.get())):
+                if((entry2.get().isdigit()) and (entry3.get().isdigit())):
+                    if((int(entry2.get())>0) and (int(entry3.get())>0)):
+                        # Mettre le résultat des calculs
+                        val1=AnalyseIP.calculNombresHotesParSousReseau(int(entry2.get()),entry1.get())
+                        val2=AnalyseIP.calculNombresReseaux(int(entry3.get()),entry1.get())
+                        lNbhMax.config(text=AnalyseIP.calculNombreHotesReseau(entry1.get()))
+                        lNbhSR.config(text=val1)
+                        print(entry2.get(),entry1.get())
+                        lNbSrMax.config(text=val2)
+                        if(val1 == -1):
+                            lDécoupeClassique1.config(text="Impossible")
+                        else:
+                            lDécoupeClassique1.config(text="Possible")
+                        if(val2 == -1):
+                            lDécoupeClassique2.config(text="Impossible")
+                        else:
+                            lDécoupeClassique2.config(text="Possible")
+                        print(entry3.get(), entry1.get())
+                else: lNbhMax.config(text="Nombre incorrecte")
+            else: lNbhMax.config(text="Masque invalide")
+        else: lNbhMax.config(text="Ip invalide")
+
 
     partie5 = Tk()
 
@@ -677,7 +701,7 @@ def partie5():
         image = img0,
         borderwidth = 0,
         highlightthickness = 0,
-        command = btnAccueil,
+        command = btnCalcul,
         relief = "flat",
         bg=colorBack)
 
