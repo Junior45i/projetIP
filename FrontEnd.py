@@ -72,9 +72,10 @@ def partie1():
             lClasse.config(text="IP Invalide")
             lReseau.config(text="IP Invalide")
             lHote.config(text="IP Invalide")
-        
     partie1 = Tk()
+    partie1.iconbitmap("./images/logo.ico")
     partie1.geometry("1000x600")
+    partie1.title("Calcule ton IP")
     partie1.configure(bg = "#ffffff")
     canvas = Canvas(
         partie1,
@@ -185,7 +186,9 @@ def partie2():
         
         
     partie2 = Tk()
+    partie2.iconbitmap("./images/logo.ico")
     partie2.geometry("1000x600")
+    partie2.title("Calcule ton IP")
     partie2.configure(bg = "#ffffff")
     canvas = Canvas(
         partie2,
@@ -312,7 +315,9 @@ def partie3():
             lResult.config(text="IP invalide")
     
     partie3 = Tk()
+    partie3.iconbitmap("./images/logo.ico")
     partie3.geometry("1000x600")
+    partie3.title("Calcule ton IP")
     partie3.configure(bg = "#ffffff")
     canvas = Canvas(
         partie3,
@@ -437,8 +442,9 @@ def partie4():
             lResult.config(text="L'IP 1 est invalide")
     
     partie4 = Tk()
-
+    partie4.iconbitmap("./images/logo.ico")
     partie4.geometry("1000x600")
+    partie4.title("Calcule ton IP")
     partie4.configure(bg = "#ffffff")
     canvas = Canvas(
         partie4,
@@ -580,6 +586,8 @@ def accueil():
     accueil = Tk()
     accueil.geometry("1000x600")
     accueil.configure(bg = "#ffffff")
+    accueil.title("Calcule ton IP")
+    accueil.iconbitmap("./images/logo.ico")
     canvas = Canvas(
         accueil,
         bg = "#ffffff",
@@ -669,6 +677,8 @@ def accueil():
     accueil.mainloop()
 
 connection = Tk()
+connection.iconbitmap("./images/logo.ico")
+connection.title("Calcule ton IP")
 connection.geometry("1000x600")
 connection.configure(bg = "#FFFFFF")
 # essayer de créer une frame
