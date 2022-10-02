@@ -563,6 +563,159 @@ def partie4():
     partie4.resizable(False, False)
     partie4.mainloop()
     
+def partie5():
+
+    def btnAccueil():
+        partie5.destroy()
+        accueil()
+        
+    def btnCalcul():
+        return 0
+
+    partie5 = Tk()
+
+    partie5.geometry("1000x600")
+    partie5.configure(bg = "#ffffff")
+    canvas = Canvas(
+        partie5,
+        bg = "#ffffff",
+        height = 600,
+        width = 1000,
+        bd = 0,
+        highlightthickness = 0,
+        relief = "ridge")
+    canvas.place(x = 0, y = 0)
+
+    background_img = PhotoImage(file = f"./images/partie5/background.png")
+    background = canvas.create_image(
+        500.0, 300.0,
+        image=background_img)
+
+    entry0_img = PhotoImage(file = f"./images/partie5/img_textBox0.png")
+    entry0_bg = canvas.create_image(
+        296.0, 241.0,
+        image = entry0_img)
+
+    # Liste des labels
+    lDécoupeClassique1 = Label(partie5,text="", font=( font_police,taille_police))
+    lDécoupeClassique1.place(
+        x = 317, y = 404,
+        width = 170,
+        height = 30)
+    lDécoupeClassique1['background'] = colorBack
+    
+    lNbhSR = Label(partie5,text="", font=( font_police,taille_police))
+    lNbhSR.place(
+        x = 351, y = 441,
+        width = 130,
+        height = 30)
+    lNbhSR['background'] = colorBack
+    
+    lNbhMax = Label(partie5,text="", font=( font_police,taille_police))
+    lNbhMax.place(
+        x = 702, y = 399,
+        width = 170,
+        height = 30)
+    lNbhMax['background'] = colorBack
+    
+    lDécoupeClassique2 = Label(partie5,text="", font=( font_police,taille_police))
+    lDécoupeClassique2.place(
+        x = 718, y = 432,
+        width = 170,
+        height = 30)
+    lDécoupeClassique2['background'] = colorBack
+    
+    lNbSrMax = Label(partie5,text="", font=( font_police,taille_police))
+    lNbSrMax.place(
+        x = 685, y = 465,
+        width = 170,
+        height = 30)
+    lNbSrMax['background'] = colorBack
+
+    entry0 = Entry(
+        bd = 0,
+        bg = "#ffffff",
+        highlightthickness = 0)
+
+    entry0.place(
+        x = 169, y = 220,
+        width = 254,
+        height = 40)
+
+    entry1_img = PhotoImage(file = f"./images/partie5/img_textBox1.png")
+    entry1_bg = canvas.create_image(
+        703.0, 241.0,
+        image = entry1_img)
+
+    entry1 = Entry(
+        bd = 0,
+        bg = "#ffffff",
+        highlightthickness = 0)
+
+    entry1.place(
+        x = 576, y = 220,
+        width = 254,
+        height = 40)
+
+    entry2_img = PhotoImage(file = f"./images/partie5/img_textBox2.png")
+    entry2_bg = canvas.create_image(
+        296.0, 317.0,
+        image = entry2_img)
+
+    entry2 = Entry(
+        bd = 0,
+        bg = "#ffffff",
+        highlightthickness = 0)
+
+    entry2.place(
+        x = 169, y = 296,
+        width = 254,
+        height = 40)
+
+    img0 = PhotoImage(file = f"./images/partie5/img0.png")
+    b0 = Button(
+        image = img0,
+        borderwidth = 0,
+        highlightthickness = 0,
+        command = btnAccueil,
+        relief = "flat",
+        bg=colorBack)
+
+    b0.place(
+        x = 443, y = 254,
+        width = 113,
+        height = 59)
+
+    img1 = PhotoImage(file = f"./images/partie5/img1.png")
+    b1 = Button(
+        image = img1,
+        borderwidth = 0,
+        highlightthickness = 0,
+        command = btnAccueil,
+        relief = "flat")
+
+    b1.place(
+        x = 93, y = 91,
+        width = 118,
+        height = 109)
+
+    entry3_img = PhotoImage(file = f"./images/partie5/img_textBox3.png")
+    entry3_bg = canvas.create_image(
+        703.0, 317.0,
+        image = entry3_img)
+
+    entry3 = Entry(
+        bd = 0,
+        bg = "#ffffff",
+        highlightthickness = 0)
+
+    entry3.place(
+        x = 576, y = 296,
+        width = 254,
+        height = 40)
+
+    partie5.resizable(False, False)
+    partie5.mainloop()
 # MAIN
 
 def accueil():
@@ -582,6 +735,10 @@ def accueil():
     def btnParti4():
         accueil.destroy()
         partie4()
+    
+    def btnParti5():
+        accueil.destroy()
+        partie5()
         
     accueil = Tk()
     accueil.geometry("1000x600")
@@ -650,7 +807,7 @@ def accueil():
         image = img3,
         borderwidth = 0,
         highlightthickness = 0,
-        command = btnParti1,
+        command = btnParti5,
         relief = "flat",
         bg=colorBack)
 
