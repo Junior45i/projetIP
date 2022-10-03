@@ -173,10 +173,10 @@ def verifEgaliteAdresse(ip, mask, adresse):
 def verifEgaliteAdresseDeuxIp(ip1, mask1, ip2, mask2):
     adresse1 = str(calculAdresseReseau(ip1, mask1))
     adresse2 = str(calculAdresseReseau(ip2, mask2))
-    adresseCroise1 = str(calculAdresseReseau(ip1, mask2))
-    adresseCroise2 = str(calculAdresseReseau(ip2, mask1))
 
-    return adresse1 == adresse2 == adresseCroise1 == adresseCroise2
+    premierTest = ipaddress.IPv4Address(ip1) in ipaddress.IPv4Network(adresse2 + "/" + mask2)
+    deuxiemeTest = ipaddress.IPv4Address(ip2) in ipaddress.IPv4Network(adresse1 + "/" + mask1)
+    return (premierTest and deuxiemeTest)
 
 # Fonction permettant de transfomer un masque decimal en binaire
 def convertMaskBin(mask):
@@ -401,9 +401,6 @@ def fonctionnalite4():
         print("Les deux machines considère l'autre comme faisant partie de son réseau")
     else:
         print("Les deux machines ne considère pas l'autre comme faisant partie de son réseau")
-
-# print(calculNombresReseaux(10,"255.255.0.0"))
-
         
     
 
