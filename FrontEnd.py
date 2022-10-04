@@ -226,7 +226,8 @@ def partie2():
         borderwidth = 0,
         highlightthickness = 0,
         command = btnCalcul,
-        relief = "flat")
+        relief = "flat",
+        bg=colorBack)
 
     b0.place(
         x = 689, y = 228,
@@ -418,6 +419,8 @@ def partie3():
     partie3.resizable(False, False)
     partie3.mainloop()
 
+
+# Vérifier orthographe et augmenter taille label
 def partie4():
     def btnAccueil():
         partie4.destroy()
@@ -569,7 +572,6 @@ def partie5():
         partie5.destroy()
         accueil()
        
-    #A terminer 
     def btnCalcul():
         if(AnalyseIP.validationIP(entry0.get())):
             if(AnalyseIP.validationMasque(entry1.get())):
@@ -580,7 +582,6 @@ def partie5():
                         val2=AnalyseIP.calculNombresReseaux(int(entry3.get()),entry1.get())
                         lNbhMax.config(text=AnalyseIP.calculNombreHotesReseau(entry1.get()))
                         lNbhSR.config(text=val1)
-                        print(entry2.get(),entry1.get())
                         lNbSrMax.config(text=val2)
                         if(val1 == -1):
                             lDécoupeClassique1.config(text="Impossible")
@@ -590,10 +591,9 @@ def partie5():
                             lDécoupeClassique2.config(text="Impossible")
                         else:
                             lDécoupeClassique2.config(text="Possible")
-                        print(entry3.get(), entry1.get())
-                else: lNbhMax.config(text="Nombre incorrecte")
-            else: lNbhMax.config(text="Masque invalide")
-        else: lNbhMax.config(text="Ip invalide")
+                else: messagebox.showerror("error","Veuillez entrer des entiers positifs")
+            else: messagebox.showerror("error","Masque invalide")
+        else: messagebox.showerror("error","IP invalide")
 
 
     partie5 = Tk()
@@ -741,7 +741,6 @@ def partie5():
     partie5.resizable(False, False)
     partie5.mainloop()
 # MAIN
-
 def accueil():
     
     def btnParti1():
