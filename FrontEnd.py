@@ -301,10 +301,15 @@ def partie3():
         accueil()
         
     def btnCalcul():
+        
         if(AnalyseIP.validationIP(entry0.get())):
-            if(AnalyseIP.validationMasque(entry1.get())):
+            if(AnalyseIP.validationMasque(entry1.get()) or AnalyseIP.validationMasqueCidr(entry3.get())):
+                if(entry1.get() == ""):
+                    mask = AnalyseIP.convertMaskCidr(entry3.get())
+                else:
+                    mask = entry1.get()
                 if(AnalyseIP.validationIP(entry2.get())):
-                    if(AnalyseIP.verifEgaliteAdresse(entry0.get(), entry1.get(), entry2.get())):
+                    if(AnalyseIP.verifEgaliteAdresse(entry0.get(), mask, entry2.get())):
                         lResult.config(text="Cette Ip fait partie de ce réseau")
                     else:
                         lResult.config(text="Cette Ip ne fait pas partie de ce réseau")
@@ -334,6 +339,29 @@ def partie3():
     background = canvas.create_image(
         500.0, 300.0,
         image=background_img)
+        
+    def check1Clicked():
+        if check_1.get() :
+            entry1.place_forget()
+            entry3.place(        
+                x = 738, y = 274,
+                width = 102,
+                height = 40)
+        else :
+            entry3.place_forget()
+            entry1.place(
+                x = 302, y = 274,
+                width = 396,
+                height = 40)
+
+    check_1 = IntVar()
+    c1 = Checkbutton(partie3,variable=check_1, onvalue=1, offvalue=0,command=check1Clicked)
+    c1.pack()
+    c1.place(
+        x = 775, y = 225)
+    
+
+    
 
     entry0_img = PhotoImage(file = f"./images/partie3/img_textBox0.png")
     entry0_bg = canvas.create_image(
@@ -372,6 +400,7 @@ def partie3():
         width = 396,
         height = 40)
 
+
     entry2_img = PhotoImage(file = f"./images/partie3/img_textBox2.png")
     entry2_bg = canvas.create_image(
         500.0, 358.0,
@@ -387,7 +416,17 @@ def partie3():
         x = 302, y = 337,
         width = 396,
         height = 40)
+    
+    entry3_img = PhotoImage(file = f"./images/partie3/img_textBox3.png")
+    entry3_bg = canvas.create_image(
+        789.0, 295.0,
+        image = entry3_img)
 
+    entry3 = Entry(
+        bd = 0,
+        bg = "#ffffff",
+        highlightthickness = 0)
+    
     img0 = PhotoImage(file = f"./images/partie3/img0.png")
     b0 = Button(
         image = img0,
@@ -486,6 +525,26 @@ def partie4():
         x = 282, y = 218,
         width = 396,
         height = 40)
+    
+    def check1Clicked():
+        if check_1.get() :
+            entry1.place_forget()
+            entry3.place(        
+                x = 738, y = 274,
+                width = 102,
+                height = 40)
+        else :
+            entry3.place_forget()
+            entry1.place(
+                x = 302, y = 274,
+                width = 396,
+                height = 40)
+    
+    check_1 = IntVar()
+    c1 = Checkbutton(partie4,variable=check_1, onvalue=1, offvalue=0, command=check1Clicked)
+    c1.pack()
+    c1.place(
+        x = 790, y = 225)
 
     img0 = PhotoImage(file = f"./images/partie4/img0.png")
     b0 = Button(
@@ -497,7 +556,7 @@ def partie4():
         bg=colorBack)
 
     b0.place(
-        x = 707, y = 298,
+        x = 707, y = 331,
         width = 191,
         height = 42)
 
@@ -561,6 +620,36 @@ def partie4():
     entry3.place(
         x = 281, y = 392,
         width = 396,
+        height = 40)
+    
+    entry4_img = PhotoImage(file = f"./images/partie4/img_textBox4.png")
+    entry4_bg = canvas.create_image(
+        803.0, 291.0,
+        image = entry4_img)
+
+    entry4 = Entry(
+        bd = 0,
+        bg = "#ffffff",
+        highlightthickness = 0)
+
+    entry4.place(
+        x = 767, y = 270,
+        width = 72,
+        height = 40)
+
+    entry5_img = PhotoImage(file = f"./images/partie4/img_textBox5.png")
+    entry5_bg = canvas.create_image(
+        803.0, 413.0,
+        image = entry5_img)
+
+    entry5 = Entry(
+        bd = 0,
+        bg = "#ffffff",
+        highlightthickness = 0)
+
+    entry5.place(
+        x = 767, y = 392,
+        width = 72,
         height = 40)
 
     partie4.resizable(False, False)
