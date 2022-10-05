@@ -924,9 +924,9 @@ def accueil():
         bg=colorBack)
 
     b0.place(
-        x = 578, y = 100,
-        width = 253,
-        height = 54)
+        x = 527, y = 106,
+        width = 353,
+        height = 62)
 
     img1 = PhotoImage(file = f"./images/accueil/img1.png")
     b1 = Button(
@@ -938,9 +938,9 @@ def accueil():
         bg=colorBack)
 
     b1.place(
-        x = 578, y = 183,
-        width = 253,
-        height = 54)
+        x = 527, y = 188,
+        width = 353,
+        height = 63)
 
     img2 = PhotoImage(file = f"./images/accueil/img2.png")
     b2 = Button(
@@ -952,9 +952,9 @@ def accueil():
         bg=colorBack)
 
     b2.place(
-        x = 578, y = 349,
-        width = 253,
-        height = 54)
+        x = 527, y = 355,
+        width = 353,
+        height = 62)
 
     img3 = PhotoImage(file = f"./images/accueil/img3.png")
     b3 = Button(
@@ -966,9 +966,9 @@ def accueil():
         bg=colorBack)
 
     b3.place(
-        x = 578, y = 432,
-        width = 253,
-        height = 54)
+        x = 527, y = 440,
+        width = 353,
+        height = 60)
 
     img4 = PhotoImage(file = f"./images/accueil/img4.png")
     b4 = Button(
@@ -980,9 +980,9 @@ def accueil():
         bg=colorBack)
 
     b4.place(
-        x = 578, y = 266,
-        width = 253,
-        height = 54)
+        x = 527, y = 272,
+        width = 353,
+        height = 62)
 
     accueil.resizable(False, False)
     accueil.mainloop()
