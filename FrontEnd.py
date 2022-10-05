@@ -898,7 +898,7 @@ def accueil():
     accueil.geometry("1000x600")
     accueil.configure(bg = "#ffffff")
     accueil.title("Calcule ton IP")
-    accueil.iconbitmap("./images/logo.ico")
+    # accueil.iconbitmap("./images/logo.ico")
     canvas = Canvas(
         accueil,
         bg = "#ffffff",
@@ -988,7 +988,7 @@ def accueil():
     accueil.mainloop()
 
 connection = Tk()
-connection.iconbitmap("./images/logo.ico")
+# connection.iconbitmap("./images/logo.ico")
 connection.title("Calcule ton IP")
 connection.geometry("1000x600")
 connection.configure(bg = "#FFFFFF")
