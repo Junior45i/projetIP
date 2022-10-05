@@ -73,7 +73,7 @@ def partie1():
             lReseau.config(text="IP Invalide")
             lHote.config(text="IP Invalide")
     partie1 = Tk()
-    partie1.iconbitmap("./images/logo.ico")
+    # partie1.iconbitmap("./images/logo.ico")
     partie1.geometry("1000x600")
     partie1.title("Calcule ton IP")
     partie1.configure(bg = "#ffffff")
@@ -186,7 +186,7 @@ def partie2():
         
         
     partie2 = Tk()
-    partie2.iconbitmap("./images/logo.ico")
+    # partie2.iconbitmap("./images/logo.ico")
     partie2.geometry("1000x600")
     partie2.title("Calcule ton IP")
     partie2.configure(bg = "#ffffff")
@@ -321,7 +321,7 @@ def partie3():
             lResult.config(text="IP invalide")
     
     partie3 = Tk()
-    partie3.iconbitmap("./images/logo.ico")
+    # partie3.iconbitmap("./images/logo.ico")
     partie3.geometry("1000x600")
     partie3.title("Calcule ton IP")
     partie3.configure(bg = "#ffffff")
@@ -492,7 +492,7 @@ def partie4():
             lResult.config(text="L'IP 1 est invalide")
     
     partie4 = Tk()
-    partie4.iconbitmap("./images/logo.ico")
+    # partie4.iconbitmap("./images/logo.ico")
     partie4.geometry("1000x600")
     partie4.title("Calcule ton IP")
     partie4.configure(bg = "#ffffff")
