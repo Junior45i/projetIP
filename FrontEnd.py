@@ -467,10 +467,18 @@ def partie4():
     
     def btnCalcul():
         if(AnalyseIP.validationIP(entry0.get())):
-            if(AnalyseIP.validationMasque(entry1.get())):
+            if(AnalyseIP.validationMasque(entry1.get()) or AnalyseIP.validationMasqueCidr(entry4.get())):
+                if(entry1.get() == ""):
+                    mask = AnalyseIP.convertMaskCidr(entry4.get())
+                else:
+                    mask = entry1.get()
                 if(AnalyseIP.validationIP(entry2.get())):
-                    if(AnalyseIP.validationMasque(entry3.get())):
-                        if(AnalyseIP.verifEgaliteAdresseDeuxIp(entry0.get(), entry1.get(), entry2.get(), entry3.get())):
+                    if(AnalyseIP.validationMasque(entry3.get()) or AnalyseIP.validationMasqueCidr(entry5.get())):
+                        if(entry3.get() == ""):
+                            mask2 = AnalyseIP.convertMaskCidr(entry5.get())
+                        else:
+                            mask2 = entry3.get()
+                        if(AnalyseIP.verifEgaliteAdresseDeuxIp(entry0.get(), mask, entry2.get(), mask2)):
                               lResult.config(text="Les deux machines considère l'autre comme faisant partie de son réseau")
                         else:
                             lResult.config(text="Les deux machines ne considère pas l'autre comme faisant partie de son réseau")
@@ -511,7 +519,7 @@ def partie4():
     lResult = Label(partie4,text="", font=( font_police,taille_police))
     lResult.place(
         x = 250, y = 459,
-        width = 500,
+        width = 600,
         height = 30)
     lResult['background'] = colorBack
 
@@ -529,14 +537,24 @@ def partie4():
     def check1Clicked():
         if check_1.get() :
             entry1.place_forget()
-            entry3.place(        
-                x = 738, y = 274,
-                width = 102,
+            entry3.place_forget()
+            entry4.place(        
+                x = 767, y = 270,
+                width = 72,
+                height = 40)
+            entry5.place(
+                x = 767, y = 392,
+                width = 72,
                 height = 40)
         else :
-            entry3.place_forget()
+            entry4.place_forget()
+            entry5.place_forget()
             entry1.place(
-                x = 302, y = 274,
+                x = 282, y = 270,
+                width = 396,
+                height = 40)
+            entry3.place(
+                x = 281, y = 392,
                 width = 396,
                 height = 40)
     
@@ -632,11 +650,6 @@ def partie4():
         bg = "#ffffff",
         highlightthickness = 0)
 
-    entry4.place(
-        x = 767, y = 270,
-        width = 72,
-        height = 40)
-
     entry5_img = PhotoImage(file = f"./images/partie4/img_textBox5.png")
     entry5_bg = canvas.create_image(
         803.0, 413.0,
@@ -646,11 +659,6 @@ def partie4():
         bd = 0,
         bg = "#ffffff",
         highlightthickness = 0)
-
-    entry5.place(
-        x = 767, y = 392,
-        width = 72,
-        height = 40)
 
     partie4.resizable(False, False)
     partie4.mainloop()
@@ -663,13 +671,17 @@ def partie5():
        
     def btnCalcul():
         if(AnalyseIP.validationIP(entry0.get())):
-            if(AnalyseIP.validationMasque(entry1.get())):
+            if(AnalyseIP.validationMasque(entry1.get()) or AnalyseIP.validationMasqueCidr(entry4.get())):
+                if(entry1.get() == ""):
+                    mask = AnalyseIP.convertMaskCidr(entry4.get())
+                else:
+                    mask = entry1.get()
                 if((entry2.get().isdigit()) and (entry3.get().isdigit())):
                     if((int(entry2.get())>0) and (int(entry3.get())>0)):
                         # Mettre le résultat des calculs
-                        val1=AnalyseIP.calculNombresHotesParSousReseau(int(entry2.get()),entry1.get())
-                        val2=AnalyseIP.calculNombresReseaux(int(entry3.get()),entry1.get())
-                        lNbhMax.config(text=AnalyseIP.calculNombreHotesReseau(entry1.get()))
+                        val1=AnalyseIP.calculNombresHotesParSousReseau(int(entry2.get()),mask)
+                        val2=AnalyseIP.calculNombresReseaux(int(entry3.get()),mask)
+                        lNbhMax.config(text=AnalyseIP.calculNombreHotesReseau(mask))
                         lNbhSR.config(text=val1)
                         lNbSrMax.config(text=val2)
                         if(val1 == -1):
@@ -744,6 +756,26 @@ def partie5():
         width = 170,
         height = 30)
     lNbSrMax['background'] = colorBack
+    
+    def check5Clicked():
+        if check_5.get() :
+            entry1.place_forget()
+            entry4.place(
+                x = 859, y = 220,
+                width = 50,
+                height = 40)
+        else :
+            entry4.place_forget()
+            entry1.place(
+                x = 576, y = 220,
+                width = 254,
+                height = 40)
+    
+    check_5 = IntVar()
+    c5 = Checkbutton(partie5,variable=check_5, onvalue=1, offvalue=0,command=check5Clicked)
+    c5.pack()
+    c5.place(
+        x = 875, y = 185)
 
     entry0 = Entry(
         bd = 0,
@@ -826,6 +858,16 @@ def partie5():
         x = 576, y = 296,
         width = 254,
         height = 40)
+
+    entry4_img = PhotoImage(file = f"./images/partie5/img_textBox4.png")
+    entry4_bg = canvas.create_image(
+        884.0, 241.0,
+        image = entry4_img)
+
+    entry4 = Entry(
+        bd = 0,
+        bg = "#ffffff",
+        highlightthickness = 0)
 
     partie5.resizable(False, False)
     partie5.mainloop()
