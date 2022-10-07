@@ -110,22 +110,22 @@ def partie1():
 
     lClasse = Label(partie1, font=( font_police,taille_police))
     lClasse.place(
-        x = 350, y = 315,
-        width = 300,
+        x = 200, y = 315,
+        width = 600,
         height = 30)
     lClasse['background'] = colorBack
     
     lReseau = Label(partie1,font=( font_police,taille_police))
     lReseau.place(
-        x = 350, y = 390,
-        width = 300,
+        x = 200, y = 390,
+        width = 600,
         height = 30)
     lReseau['background'] = colorBack
     
     lHote = Label(partie1, font=( font_police,taille_police))
     lHote.place(
-        x = 350, y = 462,
-        width = 300,
+        x = 200, y = 462,
+        width = 600,
         height = 30)
     lHote['background'] = colorBack
 
