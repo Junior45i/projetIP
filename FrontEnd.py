@@ -686,10 +686,12 @@ def partie5():
                         lNbSrMax.config(text=val2)
                         if(val1 == -1):
                             lDécoupeClassique1.config(text="Impossible")
+                            lNbhSR.config(text="Impossible")
                         else:
                             lDécoupeClassique1.config(text="Possible")
                         if(val2 == -1):
                             lDécoupeClassique2.config(text="Impossible")
+                            lNbSrMax.config(text="Impossible")
                         else:
                             lDécoupeClassique2.config(text="Possible")
                 else: messagebox.showerror("error","Veuillez entrer des entiers positifs")
