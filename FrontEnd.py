@@ -301,24 +301,48 @@ def partie3():
         accueil()
         
     def btnCalcul():
-        
+        validMask = True
         if(AnalyseIP.validationIP(entry0.get())):
-            if(AnalyseIP.validationMasque(entry1.get()) or AnalyseIP.validationMasqueCidr(entry3.get())):
-                if(entry1.get() == ""):
+            if(check_1.get()):
+                if(AnalyseIP.validationMasqueCidr(entry3.get())):
                     mask = AnalyseIP.convertMaskCidr(entry3.get())
                 else:
+                    lResult.config(text="Masque invalide")
+                    validMask = False
+            else:
+                if(AnalyseIP.validationMasque(entry1.get())):
                     mask = entry1.get()
-                if(AnalyseIP.validationIP(entry2.get())):
+                else:
+                    lResult.config(text="Masque invalide")
+                    validMask = False
+            if(AnalyseIP.validationIP(entry2.get())):
+                if(validMask):
                     if(AnalyseIP.verifEgaliteAdresse(entry0.get(), mask, entry2.get())):
                         lResult.config(text="Cette Ip fait partie de ce réseau")
                     else:
                         lResult.config(text="Cette Ip ne fait pas partie de ce réseau")
-                else:
-                    lResult.config(text="Ip réseau invalide")
             else:
-                lResult.config(text="Masque invalide")
+                lResult.config(text="Ip réseau invalide")
         else: 
             lResult.config(text="IP invalide")
+
+        # if(AnalyseIP.validationIP(entry0.get())):
+        #     if(AnalyseIP.validationMasque(entry1.get()) or AnalyseIP.validationMasqueCidr(entry3.get())):
+        #         if(entry1.get() == ""):
+        #             mask = AnalyseIP.convertMaskCidr(entry3.get())
+        #         else:
+        #             mask = entry1.get()
+        #         if(AnalyseIP.validationIP(entry2.get())):
+        #             if(AnalyseIP.verifEgaliteAdresse(entry0.get(), mask, entry2.get())):
+        #                 lResult.config(text="Cette Ip fait partie de ce réseau")
+        #             else:
+        #                 lResult.config(text="Cette Ip ne fait pas partie de ce réseau")
+        #         else:
+        #             lResult.config(text="Ip réseau invalide")
+        #     else:
+        #         lResult.config(text="Masque invalide")
+        # else: 
+        #     lResult.config(text="IP invalide")
     
     partie3 = Tk()
     # partie3.iconbitmap("./images/logo.ico")
