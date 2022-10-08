@@ -325,24 +325,7 @@ def partie3():
                 lResult.config(text="Ip réseau invalide")
         else: 
             lResult.config(text="IP invalide")
-
-        # if(AnalyseIP.validationIP(entry0.get())):
-        #     if(AnalyseIP.validationMasque(entry1.get()) or AnalyseIP.validationMasqueCidr(entry3.get())):
-        #         if(entry1.get() == ""):
-        #             mask = AnalyseIP.convertMaskCidr(entry3.get())
-        #         else:
-        #             mask = entry1.get()
-        #         if(AnalyseIP.validationIP(entry2.get())):
-        #             if(AnalyseIP.verifEgaliteAdresse(entry0.get(), mask, entry2.get())):
-        #                 lResult.config(text="Cette Ip fait partie de ce réseau")
-        #             else:
-        #                 lResult.config(text="Cette Ip ne fait pas partie de ce réseau")
-        #         else:
-        #             lResult.config(text="Ip réseau invalide")
-        #     else:
-        #         lResult.config(text="Masque invalide")
-        # else: 
-        #     lResult.config(text="IP invalide")
+            
     
     partie3 = Tk()
     # partie3.iconbitmap("./images/logo.ico")
@@ -490,30 +473,72 @@ def partie4():
         accueil()
     
     def btnCalcul():
+        
+        validMask = True
         if(AnalyseIP.validationIP(entry0.get())):
-            if(AnalyseIP.validationMasque(entry1.get()) or AnalyseIP.validationMasqueCidr(entry4.get())):
-                if(entry1.get() == ""):
-                    mask = AnalyseIP.convertMaskCidr(entry4.get())
-                else:
-                    mask = entry1.get()
-                if(AnalyseIP.validationIP(entry2.get())):
-                    if(AnalyseIP.validationMasque(entry3.get()) or AnalyseIP.validationMasqueCidr(entry5.get())):
-                        if(entry3.get() == ""):
-                            mask2 = AnalyseIP.convertMaskCidr(entry5.get())
-                        else:
-                            mask2 = entry3.get()
-                        if(AnalyseIP.verifEgaliteAdresseDeuxIp(entry0.get(), mask, entry2.get(), mask2)):
-                              lResult.config(text="Les deux machines considère l'autre comme faisant partie de son réseau")
-                        else:
-                            lResult.config(text="Les deux machines ne considère pas l'autre comme faisant partie de son réseau")
+            if(AnalyseIP.validationIP(entry2.get())):
+                if(check_1.get()):
+                    if(AnalyseIP.validationMasqueCidr(entry4.get())):
+                        mask = AnalyseIP.convertMaskCidr(entry4.get())
+                    else:
+                        lResult.config(text="Le masque 1 est invalide")
+                        validMask = False
+                    if(AnalyseIP.validationMasqueCidr(entry5.get())):
+                        mask2 = AnalyseIP.convertMaskCidr(entry5.get())
                     else:
                         lResult.config(text="Le masque 2 est invalide")
+                        validMask = False
                 else:
-                    lResult.config(text="L'IP 2 est invalide")
+                    if(AnalyseIP.validationMasque(entry1.get())):
+                        mask = entry1.get()
+                    else:
+                        lResult.config(text="Le masque 1 est invalide")
+                        validMask = False
+                    if(AnalyseIP.validationMasque(entry3.get())):
+                        mask2 = entry3.get()
+                    else:
+                        lResult.config(text="Le masque 2 est invalide")
+                        validMask = False
+
+                if(validMask):
+                    if(AnalyseIP.verifEgaliteAdresseDeuxIp(entry0.get(), mask, entry2.get(), mask2)):
+                        lResult.config(text="Les deux machines considère l'autre comme faisant partie de son réseau")
+                    else:
+                        lResult.config(text="Les deux machines ne considère pas l'autre comme faisant partie de son réseau")
             else:
-                lResult.config(text="Le masque 1 est invalide")
+                lResult.config(text="L'IP 2 est invalide")
         else: 
             lResult.config(text="L'IP 1 est invalide")
+
+
+
+
+
+
+        # if(AnalyseIP.validationIP(entry0.get())):
+        #     if(AnalyseIP.validationMasque(entry1.get()) or AnalyseIP.validationMasqueCidr(entry4.get())):
+        #         if(entry1.get() == ""):
+        #             mask = AnalyseIP.convertMaskCidr(entry4.get())
+        #         else:
+        #             mask = entry1.get()
+        #         if(AnalyseIP.validationIP(entry2.get())):
+        #             if(AnalyseIP.validationMasque(entry3.get()) or AnalyseIP.validationMasqueCidr(entry5.get())):
+        #                 if(entry3.get() == ""):
+        #                     mask2 = AnalyseIP.convertMaskCidr(entry5.get())
+        #                 else:
+        #                     mask2 = entry3.get()
+        #                 if(AnalyseIP.verifEgaliteAdresseDeuxIp(entry0.get(), mask, entry2.get(), mask2)):
+        #                       lResult.config(text="Les deux machines considère l'autre comme faisant partie de son réseau")
+        #                 else:
+        #                     lResult.config(text="Les deux machines ne considère pas l'autre comme faisant partie de son réseau")
+        #             else:
+        #                 lResult.config(text="Le masque 2 est invalide")
+        #         else:
+        #             lResult.config(text="L'IP 2 est invalide")
+        #     else:
+        #         lResult.config(text="Le masque 1 est invalide")
+        # else: 
+        #     lResult.config(text="L'IP 1 est invalide")
     
     partie4 = Tk()
     # partie4.iconbitmap("./images/logo.ico")
