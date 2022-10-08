@@ -700,6 +700,7 @@ def partie5():
     partie5 = Tk()
 
     partie5.geometry("1000x600")
+    partie5.title("Calcule ton IP")
     partie5.configure(bg = "#ffffff")
     canvas = Canvas(
         partie5,
