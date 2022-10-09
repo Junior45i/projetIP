@@ -478,26 +478,26 @@ def partie4():
         if(AnalyseIP.validationIP(entry0.get())):
             if(AnalyseIP.validationIP(entry2.get())):
                 if(check_1.get()):
-                    if(AnalyseIP.validationMasqueCidr(entry4.get())):
-                        mask = AnalyseIP.convertMaskCidr(entry4.get())
-                    else:
-                        lResult.config(text="Le masque 1 est invalide")
-                        validMask = False
                     if(AnalyseIP.validationMasqueCidr(entry5.get())):
                         mask2 = AnalyseIP.convertMaskCidr(entry5.get())
                     else:
                         lResult.config(text="Le masque 2 est invalide")
                         validMask = False
-                else:
-                    if(AnalyseIP.validationMasque(entry1.get())):
-                        mask = entry1.get()
+                    if(AnalyseIP.validationMasqueCidr(entry4.get())):
+                        mask = AnalyseIP.convertMaskCidr(entry4.get())
                     else:
                         lResult.config(text="Le masque 1 est invalide")
                         validMask = False
+                else:
                     if(AnalyseIP.validationMasque(entry3.get())):
                         mask2 = entry3.get()
                     else:
                         lResult.config(text="Le masque 2 est invalide")
+                        validMask = False
+                    if(AnalyseIP.validationMasque(entry1.get())):
+                        mask = entry1.get()
+                    else:
+                        lResult.config(text="Le masque 1 est invalide")
                         validMask = False
 
                 if(validMask):
@@ -510,35 +510,6 @@ def partie4():
         else: 
             lResult.config(text="L'IP 1 est invalide")
 
-
-
-
-
-
-        # if(AnalyseIP.validationIP(entry0.get())):
-        #     if(AnalyseIP.validationMasque(entry1.get()) or AnalyseIP.validationMasqueCidr(entry4.get())):
-        #         if(entry1.get() == ""):
-        #             mask = AnalyseIP.convertMaskCidr(entry4.get())
-        #         else:
-        #             mask = entry1.get()
-        #         if(AnalyseIP.validationIP(entry2.get())):
-        #             if(AnalyseIP.validationMasque(entry3.get()) or AnalyseIP.validationMasqueCidr(entry5.get())):
-        #                 if(entry3.get() == ""):
-        #                     mask2 = AnalyseIP.convertMaskCidr(entry5.get())
-        #                 else:
-        #                     mask2 = entry3.get()
-        #                 if(AnalyseIP.verifEgaliteAdresseDeuxIp(entry0.get(), mask, entry2.get(), mask2)):
-        #                       lResult.config(text="Les deux machines considère l'autre comme faisant partie de son réseau")
-        #                 else:
-        #                     lResult.config(text="Les deux machines ne considère pas l'autre comme faisant partie de son réseau")
-        #             else:
-        #                 lResult.config(text="Le masque 2 est invalide")
-        #         else:
-        #             lResult.config(text="L'IP 2 est invalide")
-        #     else:
-        #         lResult.config(text="Le masque 1 est invalide")
-        # else: 
-        #     lResult.config(text="L'IP 1 est invalide")
     
     partie4 = Tk()
     # partie4.iconbitmap("./images/logo.ico")
@@ -719,34 +690,45 @@ def partie5():
         accueil()
        
     def btnCalcul():
+
+        validMask = True
         if(AnalyseIP.validationIP(entry0.get())):
-            if(AnalyseIP.validationMasque(entry1.get()) or AnalyseIP.validationMasqueCidr(entry4.get())):
-                if(entry1.get() == ""):
+            if(check_5.get()):
+                if(AnalyseIP.validationMasqueCidr(entry4.get())):
                     mask = AnalyseIP.convertMaskCidr(entry4.get())
                 else:
+                    messagebox.showerror("Erreur","Masque invalide")
+                    validMask = False
+            else:
+                if(AnalyseIP.validationMasque(entry1.get())):
                     mask = entry1.get()
+                else:
+                    messagebox.showerror("Erreur","Masque invalide")
+                    validMask = False
+
+            if(validMask):
                 if((entry2.get().isdigit()) and (entry3.get().isdigit())):
                     if((int(entry2.get())>0) and (int(entry3.get())>0)):
-                        # Mettre le résultat des calculs
+                        # Mettre le résultat des calculs                     
                         val1=AnalyseIP.calculNombresHotesParSousReseau(int(entry2.get()),mask)
                         val2=AnalyseIP.calculNombresReseaux(int(entry3.get()),mask)
                         lNbhMax.config(text=AnalyseIP.calculNombreHotesReseau(mask))
                         lNbhSR.config(text=val1)
                         lNbSrMax.config(text=val2)
                         if(val1 == -1):
-                            lDécoupeClassique1.config(text="Impossible")
+                            lDécoupeClassique1.config(text="Impossible")                            
                             lNbhSR.config(text="Impossible")
                         else:
                             lDécoupeClassique1.config(text="Possible")
                         if(val2 == -1):
                             lDécoupeClassique2.config(text="Impossible")
                             lNbSrMax.config(text="Impossible")
-                        else:
+                        else:                            
                             lDécoupeClassique2.config(text="Possible")
-                else: messagebox.showerror("error","Veuillez entrer des entiers positifs")
-            else: messagebox.showerror("error","Masque invalide")
-        else: messagebox.showerror("error","IP invalide")
-
+                    else: messagebox.showerror("Erreur","Veuillez entrer des entiers positifs")
+                else: messagebox.showerror("Erreur","Veuillez entrer des entiers positifs")
+        else: messagebox.showerror("Erreur","IP invalide")
+        
 
     partie5 = Tk()
 
