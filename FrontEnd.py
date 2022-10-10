@@ -248,7 +248,7 @@ def partie2():
         width = 118,
         height = 109)
 
-    entry1_img = PhotoImage(file = f"./images/partie2/img_textBox1.png")
+    entry1_img = PhotoImage(file = f"./images/partie2/img_textBox0.png")
     entry1_bg = canvas.create_image(
         477.0, 281.0,
         image = entry1_img)
@@ -392,7 +392,7 @@ def partie3():
         width = 396,
         height = 40)
 
-    entry1_img = PhotoImage(file = f"./images/partie3/img_textBox1.png")
+    entry1_img = PhotoImage(file = f"./images/partie3/img_textBox0.png")
     entry1_bg = canvas.create_image(
         500.0, 295.0,
         image = entry1_img)
@@ -408,7 +408,7 @@ def partie3():
         height = 40)
 
 
-    entry2_img = PhotoImage(file = f"./images/partie3/img_textBox2.png")
+    entry2_img = PhotoImage(file = f"./images/partie3/img_textBox0.png")
     entry2_bg = canvas.create_image(
         500.0, 358.0,
         image = entry2_img)
@@ -612,7 +612,7 @@ def partie4():
         width = 118,
         height = 109)
 
-    entry1_img = PhotoImage(file = f"./images/partie4/img_textBox1.png")
+    entry1_img = PhotoImage(file = f"./images/partie4/img_textBox0.png")
     entry1_bg = canvas.create_image(
         480.0, 291.0,
         image = entry1_img)
@@ -628,7 +628,7 @@ def partie4():
         width = 396,
         height = 40)
 
-    entry2_img = PhotoImage(file = f"./images/partie4/img_textBox2.png")
+    entry2_img = PhotoImage(file = f"./images/partie4/img_textBox0.png")
     entry2_bg = canvas.create_image(
         480.0, 361.0,
         image = entry2_img)
@@ -644,7 +644,7 @@ def partie4():
         width = 396,
         height = 40)
 
-    entry3_img = PhotoImage(file = f"./images/partie4/img_textBox3.png")
+    entry3_img = PhotoImage(file = f"./images/partie4/img_textBox0.png")
     entry3_bg = canvas.create_image(
         479.0, 413.0,
         image = entry3_img)
@@ -670,7 +670,7 @@ def partie4():
         bg = "#ffffff",
         highlightthickness = 0)
 
-    entry5_img = PhotoImage(file = f"./images/partie4/img_textBox5.png")
+    entry5_img = PhotoImage(file = f"./images/partie4/img_textBox4.png")
     entry5_bg = canvas.create_image(
         803.0, 413.0,
         image = entry5_img)
@@ -821,7 +821,7 @@ def partie5():
         width = 254,
         height = 40)
 
-    entry1_img = PhotoImage(file = f"./images/partie5/img_textBox1.png")
+    entry1_img = PhotoImage(file = f"./images/partie5/img_textBox0.png")
     entry1_bg = canvas.create_image(
         703.0, 241.0,
         image = entry1_img)
@@ -836,7 +836,7 @@ def partie5():
         width = 254,
         height = 40)
 
-    entry2_img = PhotoImage(file = f"./images/partie5/img_textBox2.png")
+    entry2_img = PhotoImage(file = f"./images/partie5/img_textBox0.png")
     entry2_bg = canvas.create_image(
         296.0, 317.0,
         image = entry2_img)
@@ -878,7 +878,7 @@ def partie5():
         width = 118,
         height = 109)
 
-    entry3_img = PhotoImage(file = f"./images/partie5/img_textBox3.png")
+    entry3_img = PhotoImage(file = f"./images/partie5/img_textBox0.png")
     entry3_bg = canvas.create_image(
         703.0, 317.0,
         image = entry3_img)
@@ -1059,7 +1059,7 @@ entry0.place(
     width = 249.0,
     height = 22)
 
-entry1_img = PhotoImage(file = f"./images/connection/img_textBox1.png")
+entry1_img = PhotoImage(file = f"./images/connection/img_textBox0.png")
 entry1_bg = canvas.create_image(
     263.0, 273.0,
     image = entry1_img)
