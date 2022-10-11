@@ -692,6 +692,9 @@ def partie5():
     def btnCalcul():
 
         validMask = True
+        listNbHotes = entry3.get().split("-")
+        listNbHotesInt = list(map(int, listNbHotes))
+        validNbHotes = True
         if(AnalyseIP.validationIP(entry0.get())):
             if(check_5.get()):
                 if(AnalyseIP.validationMasqueCidr(entry4.get())):
@@ -707,24 +710,29 @@ def partie5():
                     validMask = False
 
             if(validMask):
-                if((entry2.get().isdigit()) and (entry3.get().isdigit())):
-                    if((int(entry2.get())>0) and (int(entry3.get())>0)):
-                        # Mettre le résultat des calculs                     
-                        val1=AnalyseIP.calculNombresHotesParSousReseau(int(entry2.get()),mask)
-                        val2=AnalyseIP.calculNombresReseaux(int(entry3.get()),mask)
-                        lNbhMax.config(text=AnalyseIP.calculNombreHotesReseau(mask))
-                        lNbhSR.config(text=val1)
-                        lNbSrMax.config(text=val2)
-                        if(val1 == -1):
-                            lDécoupeClassique1.config(text="Impossible")                            
-                            lNbhSR.config(text="Impossible")
-                        else:
-                            lDécoupeClassique1.config(text="Possible")
-                        if(val2 == -1):
-                            lDécoupeClassique2.config(text="Impossible")
-                            lNbSrMax.config(text="Impossible")
-                        else:                            
-                            lDécoupeClassique2.config(text="Possible")
+                if((entry2.get().isdigit())):
+                    if((int(entry2.get())>0)):
+                        # Mettre le résultat des calculs 
+                        for h in listNbHotes:
+                            if(h.isdigit() == False or int(h) <= 0):
+                                validNbHotes = False          
+                        if(validNbHotes and len(listNbHotes) == int(entry2.get())):     
+                            val1=AnalyseIP.calculNombresHotesParSousReseau(int(entry2.get()),mask)
+                            val2=AnalyseIP.calculNombresReseaux(max(listNbHotesInt),mask)
+                            lNbhMax.config(text=AnalyseIP.calculNombreHotesReseau(mask))
+                            lNbhSR.config(text=val1)
+                            lNbSrMax.config(text=val2)
+                            if(val1 == -1):
+                                lDécoupeClassique1.config(text="Impossible")                            
+                                lNbhSR.config(text="Impossible")
+                            else:
+                                lDécoupeClassique1.config(text="Possible")
+                            if(val2 == -1):
+                                lDécoupeClassique2.config(text="Impossible")
+                                lNbSrMax.config(text="Impossible")
+                            else:                            
+                                lDécoupeClassique2.config(text="Possible")
+                        else: messagebox.showerror("Erreur","Veuillez entrer un nombre d'hôtes avec la notation correspondante")
                     else: messagebox.showerror("Erreur","Veuillez entrer des entiers positifs")
                 else: messagebox.showerror("Erreur","Veuillez entrer des entiers positifs")
         else: messagebox.showerror("Erreur","IP invalide")
@@ -744,7 +752,6 @@ def partie5():
         if widget.get() == "":
             widget.insert("end", placeholder_text)
 
-        # set up a binding to remove placeholder text
         widget.bind("<FocusIn>", remove_placeholder)
         widget.bind("<FocusOut>", add_placeholder)
 
