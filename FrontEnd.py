@@ -729,6 +729,24 @@ def partie5():
                 else: messagebox.showerror("Erreur","Veuillez entrer des entiers positifs")
         else: messagebox.showerror("Erreur","IP invalide")
         
+    def remove_placeholder(event):
+        placeholder_text = getattr(event.widget, "placeholder", "")
+        if placeholder_text and event.widget.get() == placeholder_text:
+            event.widget.delete(0, "end")
+
+    def add_placeholder(event):
+        placeholder_text = getattr(event.widget, "placeholder", "")
+        if placeholder_text and event.widget.get() == "":
+            event.widget.insert(0, placeholder_text)
+
+    def init_placeholder(widget, placeholder_text):
+        widget.placeholder = placeholder_text
+        if widget.get() == "":
+            widget.insert("end", placeholder_text)
+
+        # set up a binding to remove placeholder text
+        widget.bind("<FocusIn>", remove_placeholder)
+        widget.bind("<FocusOut>", add_placeholder)
 
     partie5 = Tk()
 
@@ -904,6 +922,8 @@ def partie5():
         highlightthickness = 0)
 
     partie5.resizable(False, False)
+    init_placeholder(entry3,"Notation : N-N-N-N-...")
+    
     partie5.mainloop()
 # MAIN
 def accueil():
