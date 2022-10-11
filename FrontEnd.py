@@ -732,9 +732,9 @@ def partie5():
                                 lNbSrMax.config(text="Impossible")
                             else:                            
                                 lDécoupeClassique2.config(text="Possible")
-                        else: messagebox.showerror("Erreur","Veuillez entrer un nombre d'hôtes avec la notation correspondante")
-                    else: messagebox.showerror("Erreur","Veuillez entrer des entiers positifs")
-                else: messagebox.showerror("Erreur","Veuillez entrer des entiers positifs")
+                        else: messagebox.showerror("Erreur","Veuillez entrer un nombre d'hôtes avec la notation correspondante et correspondant au nombre de SR")
+                    else: messagebox.showerror("Erreur","Veuillez entrer un nombre entier positif de SR")
+                else: messagebox.showerror("Erreur","Veuillez entrer un nombre entier positif de SR")
         else: messagebox.showerror("Erreur","IP invalide")
         
     def remove_placeholder(event):
