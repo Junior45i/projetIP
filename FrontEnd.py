@@ -693,7 +693,6 @@ def partie5():
 
         validMask = True
         listNbHotes = entry3.get().split("-")
-        listNbHotesInt = list(map(int, listNbHotes))
         validNbHotes = True
         if(AnalyseIP.validationIP(entry0.get())):
             if(check_5.get()):
@@ -716,7 +715,8 @@ def partie5():
                         for h in listNbHotes:
                             if(h.isdigit() == False or int(h) <= 0):
                                 validNbHotes = False          
-                        if(validNbHotes and len(listNbHotes) == int(entry2.get())):     
+                        if(validNbHotes and len(listNbHotes) == int(entry2.get())): 
+                            listNbHotesInt = list(map(int, listNbHotes))    
                             val1=AnalyseIP.calculNombresHotesParSousReseau(int(entry2.get()),mask)
                             val2=AnalyseIP.calculNombresReseaux(max(listNbHotesInt),mask)
                             lNbhMax.config(text=AnalyseIP.calculNombreHotesReseau(mask))
