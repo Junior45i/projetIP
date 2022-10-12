@@ -691,6 +691,8 @@ def partie5():
     def btnCalcul():
 
         validMask = True
+        listNbHotes = entry3.get().split("-")
+        validNbHotes = True
         if(AnalyseIP.validationIP(entry0.get())):
             if(check_5.get()):
                 if(AnalyseIP.validationMasqueCidr(entry4.get())):
@@ -706,28 +708,51 @@ def partie5():
                     validMask = False
 
             if(validMask):
-                if((entry2.get().isdigit()) and (entry3.get().isdigit())):
-                    if((int(entry2.get())>0) and (int(entry3.get())>0)):
-                        # Mettre le résultat des calculs                     
-                        val1=AnalyseIP.calculNombresHotesParSousReseau(int(entry2.get()),mask)
-                        val2=AnalyseIP.calculNombresReseaux(int(entry3.get()),mask)
-                        lNbhMax.config(text=AnalyseIP.calculNombreHotesReseau(mask))
-                        lNbhSR.config(text=val1)
-                        lNbSrMax.config(text=val2)
-                        if(val1 == -1):
-                            lDécoupeClassique1.config(text="Impossible")                            
-                            lNbhSR.config(text="Impossible")
-                        else:
-                            lDécoupeClassique1.config(text="Possible")
-                        if(val2 == -1):
-                            lDécoupeClassique2.config(text="Impossible")
-                            lNbSrMax.config(text="Impossible")
-                        else:                            
-                            lDécoupeClassique2.config(text="Possible")
-                    else: messagebox.showerror("Erreur","Veuillez entrer des entiers positifs")
-                else: messagebox.showerror("Erreur","Veuillez entrer des entiers positifs")
+                if((entry2.get().isdigit())):
+                    if((int(entry2.get())>0)):
+                        # Mettre le résultat des calculs 
+                        for h in listNbHotes:
+                            if(h.isdigit() == False or int(h) <= 0):
+                                validNbHotes = False          
+                        if(validNbHotes and len(listNbHotes) == int(entry2.get())): 
+                            listNbHotesInt = list(map(int, listNbHotes))    
+                            val1=AnalyseIP.calculNombresHotesParSousReseau(int(entry2.get()),mask)
+                            val2=AnalyseIP.calculNombresReseaux(max(listNbHotesInt),mask)
+                            lNbhMax.config(text=AnalyseIP.calculNombreHotesReseau(mask))
+                            lNbhSR.config(text=val1)
+                            lNbSrMax.config(text=val2)
+                            if(val1 == -1):
+                                lDécoupeClassique1.config(text="Impossible")                            
+                                lNbhSR.config(text="Impossible")
+                            else:
+                                lDécoupeClassique1.config(text="Possible")
+                            if(val2 == -1):
+                                lDécoupeClassique2.config(text="Impossible")
+                                lNbSrMax.config(text="Impossible")
+                            else:                            
+                                lDécoupeClassique2.config(text="Possible")
+                        else: messagebox.showerror("Erreur","Veuillez entrer un nombre d'hôtes avec la notation correspondante et correspondant au nombre de SR")
+                    else: messagebox.showerror("Erreur","Veuillez entrer un nombre entier positif de SR")
+                else: messagebox.showerror("Erreur","Veuillez entrer un nombre entier positif de SR")
         else: messagebox.showerror("Erreur","IP invalide")
         
+    def remove_placeholder(event):
+        placeholder_text = getattr(event.widget, "placeholder", "")
+        if placeholder_text and event.widget.get() == placeholder_text:
+            event.widget.delete(0, "end")
+
+    def add_placeholder(event):
+        placeholder_text = getattr(event.widget, "placeholder", "")
+        if placeholder_text and event.widget.get() == "":
+            event.widget.insert(0, placeholder_text)
+
+    def init_placeholder(widget, placeholder_text):
+        widget.placeholder = placeholder_text
+        if widget.get() == "":
+            widget.insert("end", placeholder_text)
+
+        widget.bind("<FocusIn>", remove_placeholder)
+        widget.bind("<FocusOut>", add_placeholder)
 
     partie5 = Tk()
 
@@ -903,6 +928,8 @@ def partie5():
         highlightthickness = 0)
 
     partie5.resizable(False, False)
+    init_placeholder(entry3,"Notation : N-N-N-N-...")
+    
     partie5.mainloop()
 # MAIN
 def accueil():
