@@ -466,7 +466,6 @@ def partie3():
     partie3.mainloop()
 
 
-# Vérifier orthographe et augmenter taille label
 def partie4():
     def btnAccueil():
         partie4.destroy()
