@@ -537,8 +537,8 @@ def partie4():
 
     lResult = Label(partie4,text="", font=( font_police,taille_police))
     lResult.place(
-        x = 250, y = 459,
-        width = 600,
+        x = 200, y = 459,
+        width = 650,
         height = 30)
     lResult['background'] = colorBack
 
